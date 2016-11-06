@@ -16,6 +16,8 @@
 
 - [EC2インスタンスにTomcat8をインストールしwarファイルをデプロイ](/others/aws001.html)
 
+- [EC2インスタンスにJenkinsをインストール](/others/aws002.html)
+
 ## 便利ツール
 
 - [Cygwin](/others/cygwin001.html)

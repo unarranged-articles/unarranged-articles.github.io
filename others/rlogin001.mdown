@@ -1,6 +1,7 @@
-## RLogin(SSHツール)
+## RLogin(ターミナルソフト)
 
 ### インストール
+[公式サイト](http://nanno.dip.jp/softlib/man/rlogin/)からダウンロード
 
 ### Amazon EC2 インスタンスへの接続方法
 
