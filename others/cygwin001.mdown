@@ -1,0 +1,23 @@
+## Cygwin
+
+###  インストール
+
+1. [ダウンロード](https://cygwin.com/install.html)からexeファイルをダウンロード
+
+2. exeファイル起動後は、下記を選択
+	* Cygwin Setup Choose A Download Site：ftp://ftp.yz.yamagata-u.ac.jp
+
+3. 後は流れで完了
+
+### Gitコマンドのインストール
+
+1. Cygwinをインストールしたexeファイルを実行
+
+1. "Cygwin Setup - Select Packages"でgitで検索
+
+1. ViewでFullを選択し、あとはそのまま完了する
+
+1. cygwinで下記コマンドを実行し、インストールされていることを確認
+~~~
+$ git --version
+~~~

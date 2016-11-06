@@ -1,0 +1,12 @@
+## Sublime Text用markdownプラグイン
+
+**MarkDownが楽にかけるSublime Text用MarkDownプラグイン**
+
+- OmniMarkupPreviewer - Markdown をプレビューする
+	- ctrl+alt+o - ブラウザプレビュー
+ 	- ctrl+alt+x - markdownファイルをhtmlファイルとしてエクスポート
+ 	- ctrl+alt+c - markdownファイルをhtmlファイルとしてコピー
+
+- Monokai Extended - Markdown をシンタックスハイライトする
+- Markdown Extended - Markdown 内のコードをシンタックスハイライトする
+

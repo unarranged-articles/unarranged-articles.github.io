@@ -1,0 +1,133 @@
+### Amazon EC2 にTomcat8をインストールしwarファイルをデプロイ
+1,EC2インスタンスのセキュリティグループに8080番ポートへのアクセスを許可する
+  タイプ：カスタムTCPルール
+  プロトコル：TCP
+  ポート範囲：8080
+  送信元：0.0.0.0/0
+
+2,yumのアップデート
+$ sudo yum -y update
+
+3,java8のインストール
+$ sudo yum -y install java-1.8.0-openjdk-devel
+
+4,インストールしたjava8を使用するよう設定変更
+$ sudo yum -y install java-1.8.0-openjdk-devel
+
+5,tomcat8のインストール
+$ sudo yum -y install tomcat8
+
+6,tomcat8の起動
+$ sudo service tomcat8 start
+
+7,インスタンス再起動時にtomcatも起動するよう設定
+$ sudo chkconfig tomcat8 on
+$ chkconfig --list |grep tomcat
+tomcat8         0:off   1:off   2:on    3:on    4:on    5:on    6:off
+
+8,tomcat8の管理ツールをインストール
+$ sudo yum -y install tomcat8-admin-webapps
+
+9, 管理ユーザの設定
+$ sudo cd /usr/share/tomcat8/conf/
+$ sudo vi tomcat-user.xml
+下記がコメントアウトされているので、削除
+<user name="admin" password="adminadmin" roles="admin,manager,admin-gui,admin-script,manager-gui,manager-script,manager-jmx,manager-status" />
+
+10, tomcat再起動
+$ sudo service tomat8 restart
+
+11, 下記にアクセスし管理画面の表示
+http://パブリック IP:8080/manager/
+
+12,9でコメントアウトを解除したアカウントを入力し表示されればOK
+
+13,/usr/tmpにwarファイルを配置
+
+14,webapps配下にwarファイルをコピー
+$ sudo cp -p /usr/tmp/warファイル /usr/share/tomcat8/webapps/
+
+15,tomactの再起動
+$ sudo service tomcat8 restart
+
+16,画面の表示
+http://パブリック IP:8080/warファイル名/
+
+### EC2インスタンスにJenkinsをインストール
+1,Jenkinsをダウンロード
+$ sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+
+2,パッケージ署名チェック用のキーをインポート
+$ sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+3,Jenkinsをインストール
+$ sudo yum install jenkins
+
+4,設定ファイルに下記を追加し、Jenkinsのポートを8010に設定しURLを/jenkins/に設定
+$ sudo vi /etc/sysconfig/jenkins
+
+JENKINS_PORT="8010"
+JENKINS_ARGS="--prefix=/jenkins"
+
+5,EC2インスタンスのセキュリティグループに8010番ポートへのアクセスを許可する
+  タイプ：カスタムTCPルール
+  プロトコル：TCP
+  ポート範囲：8010
+  送信元：0.0.0.0/0
+
+6,jenkinsを再起動
+$ sudo service jenkins restart
+
+7,下記URLにアクセス
+http://パブリックID:8010/jenkins/
+
+8,表示後は画面の指示に従い、パスワード入力とプラグインをインストールし完了[reference](http://symfoware.blog68.fc2.com/blog-entry-1899.html)
+* パスワードの確認
+$  sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+* 
+9,インスタンス起動時にJenkinsも立ち上がるよう設定
+$ sudo chkconfig jenkins on
+$ sudo chkconfig --list jenkins
+
+### GitHubの始め方
+0,Cygwinでgitコマンドをインストールしておく
+
+1,[GitHub](https://github.com/)でアカウントを作成
+
+2,登録したアカウントを設定
+$ git config --global user.name "登録時の名前"
+$ git config --global user.email "登録時のアドレス"
+
+3,SSH鍵の作成
+$ mkdir ~/.ssh
+$ cd ~/.ssh
+$ ssh-keygen
+
+4,作成したSSH鍵の内容をコピー
+$ cat id_rsa.pub
+
+5,コピーしたSSH鍵をGitHubにコピー
+Account Setting > SSH keys からAdd ssh keysをクリックし、SSHキーを登録
+
+6,接続確認
+$ ssh git@github.com
+
+### GitHub上の特定リポジトリにプッシュ
+1,ローカルリポジトリとなるフォルダを作成
+$ mkdir XXX
+
+2,リポジトリをクローン
+$ git clone リモートリポジトリのパス
+
+3,プッシュしたいファイルを作成
+
+4,作成したファイルをバージョン管理対象ファイルにする
+$ git add 対象ファイル
+
+5,ローカルリポジトリにコミット
+$ git commit -m "コミットコメント"
+
+6,リモートリポジトリにプッシュ
+$ git push origin master
+

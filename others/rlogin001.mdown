@@ -1,0 +1,32 @@
+## RLogin(SSHツール)
+
+### インストール
+
+### Amazon EC2 インスタンスへの接続方法
+
+1. ファイル -> サーバーに追加で"新規"を選択
+
+2. 下記を入力
+
+	- エントリー：ご自由に
+	- プロトコル ： ssh
+	- Server Address :　パブリックIP
+	- Socket Port : 22
+	- User Name : ec2-user
+	- SSH Identity Key : ダウンロードした秘密鍵
+
+3. OKを押下
+
+4. 作成した接続情報を選択し接続する
+
+5. 下記が表示されたOK
+
+~~~
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2016.09-release-notes/
+[ec2-user@ip-172-31-26-178 ~]$ 
+~~~
