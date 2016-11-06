@@ -2,6 +2,10 @@
 
 * [Gradle](/gradle/index.html) 
 
+* [AWS](/aws/index.html)
+
+* [GitHub](/github/index.html)
+
 * [暗号技術入門](/error.html)
 
 * [その他](/others/index.html)
