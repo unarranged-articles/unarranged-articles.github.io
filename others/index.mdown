@@ -14,6 +14,8 @@
 
 ## AWS
 
+- [EC2インスタンスにTomcat8をインストールしwarファイルをデプロイ](/others/aws001.html)
+
 ## 便利ツール
 
 - [Cygwin](/others/cygwin001.html)

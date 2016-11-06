@@ -14,128 +14,31 @@
     <div class="container">
       <div id="markup">
         <article id="content" class="markdown-body">
-          <h3>Sublime Textでのmarkdownプラグイン</h3>
+          <h1>その他</h1>
+<h2>MarkDown</h2>
+<ul>
+<li><a href="http://qiita.com/tbpgr/items/989c6badefff69377da7">記法</a></li>
+</ul>
+<h2>Sublime Text</h2>
 <ul>
 <li>
-<p>OmniMarkupPreviewer - Markdown をプレビューする
-　<strong> ctrl+alt+o - ブラウザプレビュー
- </strong> ctrl+alt+x - markdownファイルをhtmlファイルとしてエクスポート
- ** ctrl+alt+c - markdownファイルをhtmlファイルとしてコピー</p>
+<p><a href="http://qiita.com/elly/items/1ae275d1b2432cc98d68">ショートカット</a></p>
 </li>
 <li>
-<p>Monokai Extended - Markdown をシンタックスハイライトする</p>
+<p><a href="/others/sublime001.html">markdownプラグイン</a></p>
 </li>
-<li>Markdown Extended - Markdown 内のコードをシンタックスハイライトする</li>
 </ul>
-<h3>Cygwinのインストール</h3>
-<p>1,<a href="https://cygwin.com/install.html">ダウンロード</a>からexeファイルをダウンロード</p>
-<p>2,exeファイル起動後は、下記を選択
-  ・Cygwin Setup Choose A Download Site：ftp://ftp.yz.yamagata-u.ac.jp</p>
-<p>3,後は流れで完了</p>
-<h3>RLogin(SSHツール)でのAmazon EC2接続方法</h3>
-<p>RLoginを起ち上げ、サーバーの接続で下記を入力</p>
+<h2>GitHub</h2>
+<h2>AWS</h2>
+<h2>便利ツール</h2>
 <ul>
-<li>プロトコル：ssh</li>
-<li>Server Address : パブリック IP</li>
-<li>Socket Port:22</li>
-<li>User Name : ec2-user</li>
-<li>SSH Identity Key : ダウンロードした秘密鍵</li>
+<li>
+<p><a href="/others/cygwin001.html">Cygwin</a></p>
+</li>
+<li>
+<p><a href="/others/rlogin001.html">RLogin</a></p>
+</li>
 </ul>
-<h3>Amazon EC2 にTomcat8をインストールしwarファイルをデプロイ</h3>
-<p>1,EC2インスタンスのセキュリティグループに8080番ポートへのアクセスを許可する
-  タイプ：カスタムTCPルール
-  プロトコル：TCP
-  ポート範囲：8080
-  送信元：0.0.0.0/0</p>
-<p>2,yumのアップデート
-$ sudo yum -y update</p>
-<p>3,java8のインストール
-$ sudo yum -y install java-1.8.0-openjdk-devel</p>
-<p>4,インストールしたjava8を使用するよう設定変更
-$ sudo yum -y install java-1.8.0-openjdk-devel</p>
-<p>5,tomcat8のインストール
-$ sudo yum -y install tomcat8</p>
-<p>6,tomcat8の起動
-$ sudo service tomcat8 start</p>
-<p>7,インスタンス再起動時にtomcatも起動するよう設定
-$ sudo chkconfig tomcat8 on
-$ chkconfig --list |grep tomcat
-tomcat8         0:off   1:off   2:on    3:on    4:on    5:on    6:off</p>
-<p>8,tomcat8の管理ツールをインストール
-$ sudo yum -y install tomcat8-admin-webapps</p>
-<p>9, 管理ユーザの設定
-$ sudo cd /usr/share/tomcat8/conf/
-$ sudo vi tomcat-user.xml
-下記がコメントアウトされているので、削除
-<user name="admin" password="adminadmin" roles="admin,manager,admin-gui,admin-script,manager-gui,manager-script,manager-jmx,manager-status" /></p>
-<p>10, tomcat再起動
-$ sudo service tomat8 restart</p>
-<p>11, 下記にアクセスし管理画面の表示
-http://パブリック IP:8080/manager/</p>
-<p>12,9でコメントアウトを解除したアカウントを入力し表示されればOK</p>
-<p>13,/usr/tmpにwarファイルを配置</p>
-<p>14,webapps配下にwarファイルをコピー
-$ sudo cp -p /usr/tmp/warファイル /usr/share/tomcat8/webapps/</p>
-<p>15,tomactの再起動
-$ sudo service tomcat8 restart</p>
-<p>16,画面の表示
-http://パブリック IP:8080/warファイル名/</p>
-<h3>EC2インスタンスにJenkinsをインストール</h3>
-<p>1,Jenkinsをダウンロード
-$ sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo</p>
-<p>2,パッケージ署名チェック用のキーをインポート
-$ sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key</p>
-<p>3,Jenkinsをインストール
-$ sudo yum install jenkins</p>
-<p>4,設定ファイルに下記を追加し、Jenkinsのポートを8010に設定しURLを/jenkins/に設定
-$ sudo vi /etc/sysconfig/jenkins</p>
-<p>JENKINS_PORT="8010"
-JENKINS_ARGS="--prefix=/jenkins"</p>
-<p>5,EC2インスタンスのセキュリティグループに8010番ポートへのアクセスを許可する
-  タイプ：カスタムTCPルール
-  プロトコル：TCP
-  ポート範囲：8010
-  送信元：0.0.0.0/0</p>
-<p>6,jenkinsを再起動
-$ sudo service jenkins restart</p>
-<p>7,下記URLにアクセス
-http://パブリックID:8010/jenkins/</p>
-<p>8,表示後は画面の指示に従い、パスワード入力とプラグインをインストールし完了<a href="http://symfoware.blog68.fc2.com/blog-entry-1899.html">reference</a>
-* パスワードの確認
-$  sudo cat /var/lib/jenkins/secrets/initialAdminPassword</p>
-<ul>
-<li>9,インスタンス起動時にJenkinsも立ち上がるよう設定
-$ sudo chkconfig jenkins on
-$ sudo chkconfig --list jenkins</li>
-</ul>
-<h3>GitHubの始め方</h3>
-<p>0,Cygwinでgitコマンドをインストールしておく</p>
-<p>1,<a href="https://github.com/">GitHub</a>でアカウントを作成</p>
-<p>2,登録したアカウントを設定
-$ git config --global user.name "登録時の名前"
-$ git config --global user.email "登録時のアドレス"</p>
-<p>3,SSH鍵の作成
-$ mkdir ~/.ssh
-$ cd ~/.ssh
-$ ssh-keygen</p>
-<p>4,作成したSSH鍵の内容をコピー
-$ cat id_rsa.pub</p>
-<p>5,コピーしたSSH鍵をGitHubにコピー
-Account Setting &gt; SSH keys からAdd ssh keysをクリックし、SSHキーを登録</p>
-<p>6,接続確認
-$ ssh git@github.com</p>
-<h3>GitHub上の特定リポジトリにプッシュ</h3>
-<p>1,ローカルリポジトリとなるフォルダを作成
-$ mkdir XXX</p>
-<p>2,リポジトリをクローン
-$ git clone リモートリポジトリのパス</p>
-<p>3,プッシュしたいファイルを作成</p>
-<p>4,作成したファイルをバージョン管理対象ファイルにする
-$ git add 対象ファイル</p>
-<p>5,ローカルリポジトリにコミット
-$ git commit -m "コミットコメント"</p>
-<p>6,リモートリポジトリにプッシュ
-$ git push origin master</p>
         </article>
       </div>
     </div>
