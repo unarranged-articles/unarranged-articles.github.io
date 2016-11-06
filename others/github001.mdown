@@ -1,0 +1,32 @@
+## GitHubの始め方
+Cygwinでgitコマンドをインストールしておく
+
+1,[GitHub](https://github.com/)でアカウントを作成
+
+2,登録したアカウントを設定
+```
+$ git config --global user.name "登録時の名前"
+$ git config --global user.email "登録時のアドレス"
+```
+
+3,SSH鍵の作成
+```
+$ mkdir ~/.ssh
+$ cd ~/.ssh
+$ ssh-keygen
+```
+
+4,作成したSSH鍵の内容をコピー
+```
+$ cat id_rsa.pub
+```
+
+5,コピーしたSSH鍵をGitHubにコピー
+```
+Account Setting > SSH keys からAdd ssh keysをクリックし、SSHキーを登録
+```
+
+6,接続確認
+```
+$ ssh git@github.com
+```
