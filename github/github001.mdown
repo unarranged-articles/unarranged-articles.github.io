@@ -81,9 +81,9 @@ Windowsであれば、msysGitを簡単にインストールすることができ
 
 2. ダウンロードしたインストーラを実行し、ウィザードに沿っていけばOK
 
- - Select Components : そのまま
- - Adjusting your Path enviroment : "Use Git Bash Only"を選択
- - Connfiguring the line ending conversions : Windows版でOK
+ 	- Select Components : そのまま
+ 	- Adjusting your Path enviroment : "Use Git Bash Only"を選択
+ 	- Connfiguring the line ending conversions : Windows版でOK
 
 3. インストールしたGit　Bashを起動
 
