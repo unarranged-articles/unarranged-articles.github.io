@@ -8,4 +8,6 @@
 
 * [暗号技術入門](/cipher/index.html)
 
+* [Junit](/junit/index.html)
+
 * [その他](/others/index.html)
