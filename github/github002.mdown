@@ -1,0 +1,195 @@
+# GitHubを利用するための準備
+
+### GitGubにアカウントを登録
+
+1. [GitHub](https://github.com/)にアクセスし、"Sign up"をクリック
+
+2. すべての項目を入力し「Create an account」をクリック
+
+3. 公開リポジトリか非公開リポジトリのどっちを使うか聞いてくるので、  
+無料の公開リポジトリを使うを選択
+
+4. スキルレベルとかどこで使う予定かとか色々聞いてくるが、  
+そのまま登録ボタンをクリックでアカウント登録は完了し、  
+登録したメールアドレスに登録完了のメールが届く
+![集中型バージョン管理](./images/account.jpeg)
+
+5. 右上から"Your profile"を選択し、"Edit profile"でプロフィールを設定
+![集中型バージョン管理](./images/test.jpeg)
+
+これでアカウントは登録できたが、このままではGitHubのGitリポジトリに対してpushとかは出来ない  
+GitHubでは、作成したリポジトリへのアクセス認証をSSHを利用した公開鍵認証で行っている  
+そのため、公開鍵認証に必要なSSH Keyの作成とGitHubへの公開鍵の登録が必要  
+
+### SSH Keyの設定
+1, GitBashなどで下記コマンドを実行し、SSH Keyを作成
+```
+$ ssh-keygen -t rsa -C "登録したメールアドレス"
+Enter file in which to save the key (/home/XXXX/.ssh/id_rsa): ← Enterキーを押下
+Created directory '/home/XXXX/.ssh'
+Enter passphrase (empty for no passphrase): ← パスフレーズを入力
+Enter same passphrase again: ← もう一度パスフレーズを入力
+Your identification has been saved in /home/XXX/.ssh/id_rsa.
+Your public key has been saved in /home/XXX/.ssh/id_rsa.pub.
+```
+
+これで下記２つの鍵が出来る
+```
+$ ls ~/.ssh
+id_rsa  id_rsa.pub 
+```
+
+ - id_rsa : 秘密鍵
+ - id_rsa.pub : 公開鍵
+
+2, 公開鍵の中身をコピーする
+```
+$ cat 公開鍵が作成されたディレクトリ/id_rsa.pub
+```
+3, GitHubにアクセス、右上のアカウント設定"Settings"から"SSH and GPG keys"をクリック
+
+4, "New SSH key"をクリックし、Key欄にコピーした公開鍵の内容をコピーし、"Add SSH key"をクリック
+![集中型バージョン管理](./images/ssh.jpeg)
+
+5, 問題なければ、登録したメールアドレスに公開鍵の登録完了メールが届く
+
+6, 接続確認
+```
+$ ssh -T git@github.com
+```
+
+7, 下記メッセージが出たらOK
+```
+Hi 登録した名前! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+### Gitリポジトリを作成
+1,　GitHubの右上にある"New repository"をクリック
+
+2, 下記を設定し"Create repository"をクリック
+
+ - Repository Name : リポジトリ名
+
+ - Description　：　リポジトリの説明
+
+ - Public　or Private : Publicを選択
+ - Initialize this repositroy with a README : チェックを入れる
+ 	- チェックをいれると、リポジトリの初期化とREADMEファイルの設定を自動でやってくれるため  
+ 	作成したらすぐにリポジトリをcloneすることが出来る
+ 	もしローカルのGitリポジトリをGitHubに登録する場合は、チェックを入れない
+
+ - Add .gitignore ： 何も設定しない
+ 	- ここにファイルの拡張子を設定すると、リポジトリ生成時に".gitignore"ファイルが生成される  
+ 	このファイルはバージョン管理対象外としたいファイルを設定するファイル
+
+ - ADD a license : 何も設定しない
+ 	- 追加するライセンスファイルが選択できる  
+ 	ここを設定するとリポジトリ生成時にLICENSEファイルが自動生成され、  
+ 	このリポジトリのライセンスを表明することができる
+
+3,下記が作成したリポジトリのページURLとなる
+![集中型バージョン管理](./images/git-raidarman.jpeg)
+
+4, GitBashを使って作成したリポジトリをローカル環境の任意の場所(今回はデスクトップ）にclone
+```
+$ cd /DeskTop/
+$ git clone https://github.com/JojiYuki/raidarman-v3-.git
+Cloning into 'raidarman-v3-'...
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+Checking connectivity... done.
+```
+
+5, cloneしたGitリポジトリに移動すると、README.mdがあることが確認できる
+```
+$ cd raidarman-v3-/
+$ ls
+README.md
+```
+
+6, ファイルを作成する
+```
+$ touch index.html
+$ ls
+index.html README.md
+```
+
+7, ローカルのGitリポジトリの状態を確認
+```
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        index.html
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+これはindex.htmlがGitリポジトリに登録されていないことを表している  
+
+8, index.htmlをバージョン管理下に置く
+```
+$ git add index.html
+```
+これでindex.htmlの変更管理はGitによって保持されるようになった
+
+9, 再度状態を確認
+```
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   index.html
+
+```
+index.htmlが新しいファイルであると認識されていることが確認できる  
+ただ、この状態はまだローカルGitリポジトリにコミットはされていない状態  
+
+10, ローカルGitリポジトリにコミット
+```
+$ git commit -m "Add index.html"
+[master fe743ee] Add index.html
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 index.html
+```
+
+11, 追加されているかは下記で確認
+```
+$ git log
+commit fe743eee6d20c809b1cf2ba4ef931a31fee4451a
+Author: JojiYuki <joji.yuki.03@gmail.com>
+Date:   Tue Nov 8 23:13:25 2016 +0900
+
+    Add index.html
+
+commit 4e80c51b5708e9c5152795b53979f0bdeda7ed68
+Author: JojiYuki <joji.yuki.03@gmail.com>
+Date:   Tue Nov 8 22:56:42 2016 +0900
+
+    Initial commit
+```
+
+12, GitHub側のリモートリポジトリにindex.htmlを登録(push)
+```
+$ git push
+Username for 'https://github.com':
+Password for 'https://joji.yuki.03@github.com':
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 285 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/unarranged-articles/raidarman-v3-.git
+   4e80c51..fe743ee  master -> master
+
+```
+
+13, GitHubに作成したindex.htmlが登録されていることを確認
+![集中型バージョン管理](./images/github002_push.jpeg)
+
+※GitHubのユーザが違うのは諸事情
