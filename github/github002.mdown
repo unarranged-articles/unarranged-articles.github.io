@@ -192,4 +192,3 @@ To https://github.com/unarranged-articles/raidarman-v3-.git
 13, GitHubに作成したindex.htmlが登録されていることを確認
 ![集中型バージョン管理](./images/github002_push.jpeg)
 
-※GitHubのユーザが違うのは諸事情
