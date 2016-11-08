@@ -1,0 +1,14 @@
+## 他人のリポジトリにプッシュ
+
+1, Gitリポジトリ管理者が対象Gitリポジトリで"Settings"　-> "Collaborators"を選択
+
+2, メンテナンス権限を付与したいユーザを検索し追加
+
+3, 追加されたユーザに招待メールが届くので承認する
+
+4, 追加されたユーザは下記コマンドで招待されたGitリポジトリをクローン
+```
+$ git clone https://自身のユーザ名@github.com/JojiYuki/raidarman-v3-.git
+```
+
+5, 後はいつも通り、commitしてpush

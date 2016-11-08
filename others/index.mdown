@@ -16,6 +16,8 @@
 
 - [リポジトリにプッシュ](/others/github002.html)
 
+- [他人のリポジトリにプッシュ](/others/github003.html)
+
 ## AWS
 
 - [EC2インスタンスにTomcat8をインストールしwarファイルをデプロイ](/others/aws001.html)
