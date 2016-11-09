@@ -4,4 +4,4 @@
 
 * [GitHubを利用するための準備](/github/github002.html)
 
-* [Gitコマンドの操作](/github/github003.html)
+* [Gitコマンドでリポジトリを操作](/github/github003.html)

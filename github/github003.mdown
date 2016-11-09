@@ -1,0 +1,312 @@
+# Gitコマンドでリポジトリを操作(まだ途中)
+
+Gitの最低限必要な知識と操作をGitコマンドを使って学習
+
+### 基本的な操作
+
+1, ローカル環境にgitリポジトリを作成
+``` 
+$ mkdir try-git
+$ cd try-git
+$ git init
+Initialized empty Git repository in XXX/try-git/.git/
+$ ls -a
+.  ..  .git
+``` 
+
+`git init`はGitリポジトリを新しく作るコマンド  
+上記ではtry-gitディレクトリをGitリポジトリとしている
+
+このコマンドを実行すると.gitディレクトリが作成されている  
+ここには現在のディレクトリ配下を管理するリポジトリデータが格納される
+
+Gitではこのディレクトリ配下をこのリポジトリに付随したワークツリーと呼び、  
+ワークツリーでファイルの編集をし、リポジトリ登録してファイルの変更履歴を管理する  
+リポジトリを前の状態に戻したいときは、リポジトリから前の状態のファイルを取り出しワークツリーに展開する
+
+2, 作成したgitリポジトリの状態を確認
+``` 
+$ git status
+On branch master
+
+Initial commit
+
+nothing to commit (create/copy files and use "git add" to track)
+``` 
+‘git status`はGitリポジトリの状態を表示する  
+現在はmasterブランチにいて、何もコミットがないことが表示されている
+
+ここにファイルを作成し再度Gitリポジトリの状態を確認してみる
+``` 
+$ touch index.txt
+$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        index.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+すると、Untracked filesとしてindex.txtが追加されている  
+これは前回にはなかったファイルですよと表示している  
+![github003-00](./images/github003_00.jpeg)
+
+
+3, ステージ領域に作成したファイルを追加
+``` 
+$ git add index.txt
+$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   index.txt
+``` 
+Gitリポジトリのワークツリーでファイルを作成しただけでは、  
+Gitリポジトリのバージョン管理対象とはなっていない
+
+`git add`を実行すると、対象ファイルがステージ領域(インデックス)と呼ばれる場所にファイルを登録され、  
+Gitリポジトリのバージョン管理対象となる
+
+Changes to be committedはステージ領域にあるファイルを表示します
+![github003-01](./images/github003_01.jpeg)
+
+4, Gitリポジトリのバージョン管理として登録する
+``` 
+$ git commit -m "add index.txt"
+[master (root-commit) d36756c] add index.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 index.txt
+$ git status
+On branch master
+nothing to commit, working directory clean
+```
+
+`git commit`でステージ領域登録されているファイルをGitリポジトリのバージョン管理として登録するコマンド
+これでindex.txtはGitリポジトリに登録されました  
+
+またGitリポジトリの状態を見ると、ワークツリーとGitリポジトリの状態から変更がないことが分かる
+![github003-02](./images/github003_02.jpeg)
+
+5, Gitリポジトリにコミットされたログを確認
+``` 
+$ git log
+commit d36756c4d2437d0c0fc987f29c506a38ae695e74
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Wed Nov 9 21:42:46 2016 +0900
+
+    add index.txt
+``` 
+
+さっき実行したコミットログが情報が表示されている  
+commitの横にある文字はこのコミットのハッシュ値となる  
+Gitの別コマンドでこのコミットに対して何かしら操作する際はこのハッシュ値を利用する
+
+6, 差分を確認
+``` 
+$ vi index.txt
+try git
+$ git diff
+diff --git a/index.txt b/index.txt
+index e69de29..2c53aca 100644
+--- a/index.txt
++++ b/index.txt
+@@ -0,0 +1 @@
++try git
+```
+
+`git diff`は現在のワークツリーとステージ領域の差分を見るコマンド  
++で表示されている行が追加された行  
+削除した場合は-で表示される
+
+```
+$ git add index.txt
+$ git diff
+```
+修正したindex.txtをステージ領域に追加したので、差分は表示されていない
+
+```
+$ git diff HEAD
+diff --git a/index.txt b/index.txt
+old mode 100644
+new mode 100755
+index e69de29..2c53aca
+--- a/index.txt
++++ b/index.txt
+@@ -0,0 +1 @@
++try git
+```
+`git diff HEAD`はワークツリーとリポジトリの差分を表示
+コミットする際は必ずこのコマンドで差分を確認してコミットする癖をつけたほうが良い
+
+後はリポジトリに登録してログを確認
+```
+$ git commit -m "chg index.txt"
+[master 19b0a93] chg index.txt
+ 1 file changed, 1 insertion(+)
+$ git log
+commit 19b0a934d371b5c57359b98e7276e1685e1979bb
+Author: anchan024 <anchan024@gmail.com>
+Date:   Wed Nov 9 22:10:59 2016 +0900
+
+    chg index.txt
+
+commit d36756c4d2437d0c0fc987f29c506a38ae695e74
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Wed Nov 9 21:42:46 2016 +0900
+
+    add index.txt
+```
+
+### ブランチの操作
+GitではSVNと違ってブランチを作成する際、中央リポジトリと通信する必要がないため気軽にブランチが作れる  
+
+何か作業が発生したらトピックブランチと呼ばれる１つのテーマに集中して作業がする専用ブランチ作成し、  
+作業が完了したらそのトピックブランチを、中心となっているブランチにマージしていく  
+トピックブランチを使ったワークフローが主流となっている  
+
+また、トピックブランチではその目的以外の作業はしない  
+例えその作業中に何かしらのバグが見つかった場合は、  
+それ専用のブランチを作成しそこでバグを修正し中心ブランチにマージする
+
+通常はGitでデフォルトで作成されるmasterブランチからトピック毎にブランチを作成するため、  
+masterブランチを中心として作業していく  
+このようなブランチを統合ブランチを呼ぶ  
+このブランチは常に健康な状態であり、デプロイ対象となる  
+SVNでいうトランクと思ってもいいかも(Gitにはトランクという考えはなく、すべてブランチです)
+
+ここではmasterブランチからfeature-Aブランチとfeature-Bブランチを使って、  
+ブランチの操作を紹介します
+
+1, ブランチの確認
+```
+$ git branch
+* master
+```
+`git branch`はブランチの一覧を表示し、現在のどこのブランチにいるか確認コマンド  
+*がついているブランチが現在の作業ブランチになる
+
+2, ブランチを作成し切り替える
+```
+$ git checkout -b feature-A
+Switched to a new branch 'feature-A'
+```
+
+`git checkout -b feature-A`はfeature-Aブランチを作成し、  
+作業ブランチをfeature-Aブランチに切り替えるコマンド
+
+これは下記コマンドを同時にやっている
+```
+$ git branch feature-A
+$ git checkout feature-A
+```
+`git branch feature-A`でfeature-Aブランチを作成し、  
+`git checkout feature-A`でfeature-Aブランチに作業ブランチを切り替えている
+
+再度、ブランチを確認
+```
+$ git branch
+* feature-A
+  master
+```
+feature-Aブランチが出来ており、現在の作業ブランチが切り替わっていることが確認できた
+![github003-03](./images/github003_03.jpeg)
+
+3, feature-Aブランチを育てる
+```
+$ vi index.txt
+create feature-A branch
+try git
+$ git add index.txt
+$ git commit -m "add feature-A"
+[feature-A e08edea] add feature-A
+ 1 file changed, 1 insertion(+)
+ mode change 100644 => 100755 index.txt
+```
+
+masterブランチには何も変更がされていないことを確認
+```
+$ git checkout master
+Switched to branch 'master'
+$ git branch
+  feature-A
+* master
+$ cat index.txt
+try git
+```
+masterブランチのindex.txtは何も変更が入っていないことが確認できた
+
+feature-Aブランチに戻る
+```
+$ git checkout -
+Switched to branch 'feature-A'
+$ git branch
+* feature-A
+  master
+```
+-をつけると、一つ前のブランチに移動する
+
+4, masterブランチにfeature-Aブランチをコミット
+```
+$ git checkout master
+$ git merge --no-f feature-A
+Merge made by the 'recursive' strategy.
+ index.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ mode change 100644 => 100755 index.txt
+```
+`git merge --no-f`は作業ブランチに指定したブランチをマージするコマンド  
+`--no-f`オプションをつけるとマージコミットのメッセージを入力するエディタが表示される
+
+デフォルトで"Merge branch 'feature-A'"が今回はそのまま終了
+
+マージされたか確認
+```
+$ git branch
+  feature-A
+* master
+$ cat index.txt
+create feature-A branch
+try git
+```
+
+masterブランチのindex.txtが更新されていることが確認できた
+![github003-04](./images/github003_04.jpeg)
+
+
+----------途中------------
+----------途中------------
+
+### リモートリポジトリに送信
+ここまではローカルのGitリポジトリに対してのみ操作しています  
+これからローカルのGitリポジトリをGitHubのリモートGitリポジトリに登録
+
+----------途中------------
+1,　GitHubでリポジトリを新規作成する
+
+ - リポジトリ名：try-git
+
+2, リモートリポジトリを登録
+```
+git remote add origin_try_git https://github.com/GitHubユーザ名/try-git.git
+```
+`git remote add`は指定したリモートGitリポジトリURLを"origin_try_git"という名前で登録した  
+以降はこのURLを入力する必要はなく、"origin_try_git"でこのURLを指すようになる
+
+3, masterブランチをリモートブランチに送信
+```
+$ git push -u origin_try_git master
+```
+----------途中------------
+
+### その他
+上記はあくまで最低限のコマンドだけを紹介している  
+もっと知るためには[ここのサイト](http://k.swd.cc/learnGitBranching-ja/)がおすすめ  
+あと実際にGitHubに勤めている人が書いているGitの基本が学べる[この資料](https://progit-ja.github.io/)も読まないと

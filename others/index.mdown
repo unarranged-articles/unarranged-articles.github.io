@@ -18,6 +18,8 @@
 
 - [他人のリポジトリにプッシュ](/others/github003.html)
 
+- [Gitコマンドチートシート](/others/github000.html)
+
 ## AWS
 
 - [EC2インスタンスにTomcat8をインストールしwarファイルをデプロイ](/others/aws001.html)
@@ -25,8 +27,6 @@
 - [EC2インスタンスにJenkinsをインストール](/others/aws002.html)
 
 - [EC2インスタンスにGitBucketを立てる](/others/aws003.html)
-
-## SLF4J
 
 ## 便利ツール
 
