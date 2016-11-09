@@ -1,0 +1,29 @@
+## EC2インスタンスにGitBucketを立てる
+
+GitBucketとは、GitHubと類似の機能を実装しているオープンソースのソフトウェア  
+
+GitHubでは非公開のリポジトリを作成する場合や組織利用はリポジトリ数単位で有料となっている  
+GitBucketでは、無制限で非公開リポジトリや5人までのチームであれば無料で組織利用できる
+
+
+1, [GitBucket](https://github.com/gitbucket/gitbucket/releases)よりwarファイルをダウンロード
+
+2, /usr/tmpにwarファイルを配置
+
+3, webapps配下にwarファイルをコピー
+```
+$ sudo cp -p /usr/tmp/warファイル /usr/share/tomcat8/webapps/
+```
+
+4, tomactの再起動
+```
+$ sudo service tomcat8 restart
+```
+
+5, 下記にアクセスし画面を表示
+```	
+http://パブリック IP:8080/gitbucket/
+```	
+
+6, 初期のアカウントはroot/rootなので、これでログインし完了
+![GitBucket](./images/aws003-01.jpeg)
