@@ -18,7 +18,7 @@
 
 - [他人のリポジトリにプッシュ](/others/github003.html)
 
-- [Gitコマンドチートシート](/others/github000.html)
+- [Gitコマンドチートシート](/others/github004.html)
 
 ## AWS
 
