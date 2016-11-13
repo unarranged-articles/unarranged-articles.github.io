@@ -1,5 +1,3 @@
-# その他
-
 ## 記事の投稿方法
 - [投稿方法](/others/upload-article001.html)
 
