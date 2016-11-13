@@ -1,0 +1,12 @@
+# Pull Request
+
+GitHubが有名となった１つにPull Requestという機能があるためです  
+この機能によりクラウド上で共有して他者と協力しプログラミングするソーシャルコーディングが主流となり、  
+またこの機能を使って初めて、GitHubを使っていると言える
+
+このPull Requestの使い方を説明します
+
+## Pull Requestとは
+Pull　Requestとは自身が加えた変更を相手のリポジトリに取り込んでもらう時にする行為
+
+## Pull Requestの流れ
