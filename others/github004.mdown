@@ -55,6 +55,13 @@
 
  	- git branch ブランチ名  
  	指定したブランチを作成
+
+ 	- git branch --delte [ブランチ名]  
+ 	指定したブランチを削除
+
+ 	- git branch -D [ブランチ名]  
+ 	マージしたかどうか確認なしで指定したブランチを削除
+
  	
  -	git checkout
 

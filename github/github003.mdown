@@ -241,17 +241,6 @@ $ git branch
 $ cat index.txt
 try git
 ```
-masterブランチのindex.txtは何も変更が入っていないことが確認できた
-
-feature-Aブランチに戻る
-```
-$ git checkout -
-Switched to branch 'feature-A'
-$ git branch
-* feature-A
-  master
-```
--をつけると、一つ前のブランチに移動する
 
 4, masterブランチにfeature-Aブランチをコミット
 ```
