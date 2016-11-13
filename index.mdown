@@ -10,4 +10,8 @@
 
 * [Junit](/junit/index.html)
 
+* [Apache Solr](/apachesolr/index.html)
+
+* [Elastic Search](/elasticsearch/index.html)
+
 * [その他](/others/index.html)
