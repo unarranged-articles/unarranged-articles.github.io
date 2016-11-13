@@ -1,4 +1,4 @@
-# Gitコマンドでリポジトリを操作(まだ途中)
+# Gitコマンドでリポジトリを操作
 
 Gitの最低限必要な知識と操作をGitコマンドを使って学習
 
@@ -269,31 +269,390 @@ try git
 masterブランチのindex.txtが更新されていることが確認できた
 ![github003-04](./images/github003_04.jpeg)
 
+###　歴史の操作
+ここまでの操作で、コミットログを歴史として積み重ねていきリポジトリを育てていくことが出来た  
 
-----------途中------------
-----------途中------------
+Gitでは歴史の操作を柔軟に行うことができるのが１つの特徴としてある  
+Gitリポジトリの形をとっているので、ほかのリポジトリに影響を与えることなく歴史を操作できる
+
+ここからは歴史の操作を覚えるために、  
+歴史を戻ってfearure-Bというトピックブランチを作ります
+![github003-05](./images/github003_05.jpeg)
+
+まずはfeature-Aブランチを分岐する前に戻って、feature-Bというブランチを作ります
+
+リポジトリのHEAD、ステージ、ワーキングツリーを指定した状態まで戻すには、  
+`git reset --hard`コマンドを使用する  
+このコマンドで戻りたいハッシュ値を指定すると、指定した時の状態に復元できる
+
+1, まずはfearure-Aブランチが分岐する前のハッシュ値を確認
+```
+$ git log --graph
+*   commit 32b3155f09e329d696e0660acb5cb5a88fb48a48
+|\  Merge: 2e9824a 70cd939
+| | Author: unarranged-articles <startaws@gmail.com>
+| | Date:   Sun Nov 13 19:06:36 2016 +0900
+| |
+| |     Merge branch 'feature-A'
+| |
+| * commit 70cd9392835f777711e6d6f5a7c5bc4028b98e46
+|/  Author: unarranged-articles <startaws@gmail.com>
+|   Date:   Sun Nov 13 19:05:23 2016 +0900
+|
+|       add fearure-A
+|
+* commit 2e9824afa4ca0db0d2b70557a37473addeeab169
+| Author: unarranged-articles <startaws@gmail.com>
+| Date:   Sun Nov 13 18:49:37 2016 +0900
+|
+|     chg index.txt
+|
+* commit a94ace51d09cb8b9ba2cdb275d29e57d755d345e
+  Author: unarranged-articles <startaws@gmail.com>
+  Date:   Sun Nov 13 18:48:43 2016 +0900
+
+      add index.txt
+```
+上記で、ハッシュ値`2e9824afa4ca0db0d2b70557a37473addeeab169`が、  
+分岐前のハッシュ値であることが分かった
+
+これを先ほどのコマンドで指定すれば、分岐前の状態に戻る
+
+2, 分岐前の状態に戻る
+```
+$ git reset --hard 2e9824afa4ca0db0d2b70557a37473addeeab169
+HEAD is now at 2e9824a chg index.txt
+```
+これでfeature-Aブランチで分岐する前の状態に戻った
+
+```
+$ git log --graph
+* commit 2e9824afa4ca0db0d2b70557a37473addeeab169
+| Author: unarranged-articles <startaws@gmail.com>
+| Date:   Sun Nov 13 18:49:37 2016 +0900
+|
+|     chg index.txt
+|
+* commit a94ace51d09cb8b9ba2cdb275d29e57d755d345e
+  Author: unarranged-articles <startaws@gmail.com>
+  Date:   Sun Nov 13 18:48:43 2016 +0900
+
+      add index.txt
+
+$ git branch
+  feature-A
+* feature-B
+  master
+$ cat index.txt
+try git
+```
+
+3, feature-Bブランチを作成
+```
+$ git checkout -b feature-B
+Switched to a new branch 'feature-B'
+```
+![github003-06](./images/github003_06.jpeg)
+
+4, index.txtを修正しコミット
+```
+$ vi index.txt
+$ cat index.txt
+vi create feature-B
+try git
+$ git add index.txt
+$ git commit -m "fix B"
+[feature-B 16cfbb0] fix B
+ 1 file changed, 1 insertion(+)
+```
+
+これからこの状態を目指します
+![github003-07](./images/github003_07.jpeg)
+
+
+5, masterブランチをfeature-Aブランチをマージした状態に戻す(歴史を進める)
+```
+$ git checkout master
+Switched to branch 'master'
+$ git reflog
+16cfbb0 HEAD@{0}: commit: fix B
+2e9824a HEAD@{1}: checkout: moving from master to feature-B
+2e9824a HEAD@{2}: reset: moving to 2e9824afa4ca0db0d2b70557a37473addeeab169
+32b3155 HEAD@{3}: merge feature-A: Merge made by the 'recursive' strategy.
+2e9824a HEAD@{4}: checkout: moving from feature-A to master
+70cd939 HEAD@{5}: commit: add fearure-A
+2e9824a HEAD@{6}: checkout: moving from master to feature-A
+2e9824a HEAD@{7}: checkout: moving from feature-A to master
+2e9824a HEAD@{8}: checkout: moving from master to feature-A
+2e9824a HEAD@{9}: commit: chg index.txt
+a94ace5 HEAD@{10}: commit (initial): add index.txt
+$ git reset --hard 32b3155
+HEAD is now at 32b3155 Merge branch 'feature-A'
+$ git log --graph
+*   commit 32b3155f09e329d696e0660acb5cb5a88fb48a48
+|\  Merge: 2e9824a 70cd939
+| | Author: unarranged-articles <startaws@gmail.com>
+| | Date:   Sun Nov 13 19:06:36 2016 +0900
+| |
+| |     Merge branch 'feature-A'
+| |
+| * commit 70cd9392835f777711e6d6f5a7c5bc4028b98e46
+|/  Author: unarranged-articles <startaws@gmail.com>
+|   Date:   Sun Nov 13 19:05:23 2016 +0900
+|
+|       add fearure-A
+|
+* commit 2e9824afa4ca0db0d2b70557a37473addeeab169
+| Author: unarranged-articles <startaws@gmail.com>
+| Date:   Sun Nov 13 18:49:37 2016 +0900
+|
+|     chg index.txt
+|
+* commit a94ace51d09cb8b9ba2cdb275d29e57d755d345e
+  Author: unarranged-articles <startaws@gmail.com>
+  Date:   Sun Nov 13 18:48:43 2016 +0900
+
+      add index.txt
+```
+
+`git log`ではその状態からの過去ログしか確認できないが、  
+`git reflog`では現在のリポジトリで行われた作業ログを確認することができる  
+これで歴史を戻す前のハッシュを見つけて、`git reset --hard`コマンドで歴史を進める
+![github003-08](./images/github003_08.jpeg)
+
+6, fearure-Bブランチをmasterブランチにマージ
+```
+$ git merge --no-ff feature-B
+Auto-merging index.txt
+CONFLICT (content): Merge conflict in index.txt
+Automatic merge failed; fix conflicts and then commit the result.
+```
+「index.txtがCONFLICTしている」と警告が出た  
+これはfeature-Aブランチとfeature-Bブランチの両方でindex.txtに対して変更したため
+
+7, コンフリクトを解消するため、衝突個所を確認
+```
+$ cat index.txt
+<<<<<<< HEAD
+create feaure-A branch
+=======
+vi create feature-B
+>>>>>>> feature-B
+try git
+```
+
+`======`より上の部分が現在のHEADの内容で、  
+下の内容が今回マージしようとしているfeature-Bブランチの内容となる
+
+8, コンフリクトを解消
+```
+$ vi index.txt
+$ cat index.txt
+create feaure-A branch
+vi create feature-B
+try git
+```
+
+9, 解消した結果をコミットする
+```
+$ git add index.txt
+$ git commit -m "fix conflict"
+[master 5f4c807] fix conflict
+```
 
 ### リモートリポジトリに送信
 ここまではローカルのGitリポジトリに対してのみ操作しています  
-これからローカルのGitリポジトリをGitHubのリモートGitリポジトリに登録
 
-----------途中------------
+これからローカルのGitリポジトリをGitHubのリモートGitリポジトリに登録します
+
 1,　GitHubでリポジトリを新規作成する
 
  - リポジトリ名：try-git
+![github003-09](./images/github003_09.jpeg)
 
 2, リモートリポジトリを登録
 ```
-git remote add origin_try_git https://github.com/GitHubユーザ名/try-git.git
+$ git remote add origin_try_git git@github.com:GitHubアカウント名/try-git.git
 ```
+
 `git remote add`は指定したリモートGitリポジトリURLを"origin_try_git"という名前で登録した  
 以降はこのURLを入力する必要はなく、"origin_try_git"でこのURLを指すようになる
-
+```
+$ git config --list
+・
+・
+・
+remote.origin_try_git.url=git@github.com:unarranged-articles/try-git.git
+remote.origin_try_git.fetch=+refs/heads/*:refs/remotes/origin_try_git/*
+```
 3, masterブランチをリモートブランチに送信
 ```
 $ git push -u origin_try_git master
+Enter passphrase for key '/home/タロウ/.ssh/id_rsa':
+Counting objects: 16, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (16/16), 1.22 KiB | 0 bytes/s, done.
+Total 16 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), done.
+To git@github.com:unarranged-articles/try-git.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin_try_git.
 ```
-----------途中------------
+
+ローカルリポジトリの内容をリモートリポジトリに送信するためには`git push`コマンドを使う  
+上記では、`origin_try_git`という名前のリモートリポジトリに、  
+ローカルのmasterブランチの内容を送信している
+
+`-u`で、ローカルリポジトリの現在のブランチのupstream(作業ブランチの上流)は、  
+origin_try_gitリポジトリのmasterブランチであることを同時に設定している  
+このオプションを付与することで、リモートリポジトリの内容を取得する  
+`git pull`コマンドを実行するときに、特にオプションを指定しなくても  
+ローカルリポジトリのブランチはorigin_try_gitのmasterブランチから取得するようになる
+![github003-11](./images/github003_11.jpeg)
+
+4, GitHubページのmasterブランチが更新されていることを確認
+![github003-10](./images/github003_10.jpeg)
+
+上記では、リモートリポジトリのmasterブランチに対して送信しているが、  
+master以外のブランチへ送信する事も可能  
+
+1, ローカルリポジトリでfeature-Cブランチを作成
+```
+$ git checkout -b feature-C
+Switched to a new branch 'feature-C'
+```
+
+2, リモートリポジトリにも同じ名前のブランチでpush
+```
+$ git push -u origin_try_git feature-C
+Enter passphrase for key '/home/タロウ/.ssh/id_rsa':
+Total 0 (delta 0), reused 0 (delta 0)
+To git@github.com:unarranged-articles/try-git.git
+ * [new branch]      feature-C -> feature-C
+Branch feature-C set up to track remote branch feature-C from origin_try_git.
+```
+
+3, GitHubページでfeature-Cブランチが作成されていることを確認
+![github003-12](./images/github003_12.jpeg)
+
+### リモートリポジトリから取得
+
+ここからは上記で作成したリモートリポジトリのfeature-Cブランチを、  
+ローカルの別ディレクトリで取得し、そこでfeature-Cブランチを更新するなどし、  
+リモートリポジトリからの取得などの操作をします
+
+イメージとしては`git push`で実行したリポジトリを他の人と開発していくイメージ
+
+
+1, 別ディレクトリにリモートリポジトリの`try-git`を取得
+```
+$ mkdir try-git-2
+$ cd try-git-2/
+$ git clone https://github.com/アカウント名/try-git.git
+Cloning into 'try-git'...
+remote: Counting objects: 16, done.
+remote: Compressing objects: 100% (5/5), done.
+remote: Total 16 (delta 2), reused 16 (delta 2), pack-reused 0
+Unpacking objects: 100% (16/16), done.
+Checking connectivity... done.
+$ ls
+try-git
+$ cd try-git/
+```
+
+`git clone`した直後だと作業ブランチはmasterブランチとなっている  
+またclone元のリモートリポジトリをoriginという名前で参照できるよう自動設定されている  
+
+つまり、ローカルリポジトリのmasterブランチはGitHubのリモートリポジトリ(origin)のmasterと同じ内容になっている
+```
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/feature-C
+  remotes/origin/master
+```
+`-a`オプションはローカルリポジトリだけでなく、リモートリポジトリも含んだブランチの状態を表示する  
+
+2, リモートリポジトリfeature-Cブランチをチェックアウトする
+```
+$ git checkout -b feature-C origin/feature-C
+Branch feature-C set up to track remote branch feature-C from origin.
+Switched to a new branch 'feature-C'
+$ git branch
+* feature-C
+  master
+```
+
+`-b`オプションの後ろはローカルリポジトリに新たに作成するブランチ名  
+また、その後ろはチェックアウト元となるブランチ名となる
+
+上記では、リモートリポジトリのfeature-Cブランチを元にfeature-Cブランチをローカルブランチを作成している
+
+3, ローカルリポジトリのfeature-Cブランチを変更しコミットする
+```
+$ vi index.txt
+$ git diff
+diff --git a/index.txt b/index.txt
+index acbbe41..a46556f 100644
+--- a/index.txt
++++ b/index.txt
+@@ -1,3 +1,4 @@
++create feature-C branch
+ create feaure-A branch
+ vi create feature-B
+ try git
+$ git commit -am "add feature-C"
+[feature-C 3007c31] add feature-C
+ 1 file changed, 1 insertion(+)
+```
+`-a`オプションは変更となったファイルを自動検出しコミットする  
+ただし、新規ファイルはコミット対象とならない
+
+4, feature-Cブランチをpushする
+```
+$ git push
+Username for 'https://github.com':
+Password for 'https://unarranged-articles@github.com':
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 296 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/unarranged-articles/try-git.git
+   5f4c807..3007c31  feature-C -> feature-C
+```
+
+5, 最初作業していたローカルリポジトリに移動し、最新リモートリポジトリの情報を取得する
+```
+$ cd ../try-git/
+$ git pull origin_try_git feature-C
+Enter passphrase for key '/home/タロウ/.ssh/id_rsa':
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:unarranged-articles/try-git
+ * branch            feature-C  -> FETCH_HEAD
+   5f4c807..3007c31  feature-C  -> origin_try_git/feature-C
+Updating 5f4c807..3007c31
+Fast-forward
+ index.txt | 1 +
+ 1 file changed, 1 insertion(+)
+$ git branch
+  feature-A
+  feature-B
+* feature-C
+  master
+```
+
+`git pull`コマンドは、リモートリポジトリの内容を取得する  
+
+今回はリモートリポジトリのfeature-Cリポジトリが最新であったので、  
+ローカルリポジトリのfeature-Cリポジトリが最新化された
+
+同じブランチで他の開発者と強調して開発しテイク場合は、  
+競合を防ぐためにもpushとpullをこまめにする必要がある
 
 ### その他
 上記はあくまで最低限のコマンドだけを紹介している  
