@@ -1,5 +1,8 @@
 # その他
 
+## 記事の投稿方法
+- [投稿方法](/others/upload-article001.html)
+
 ## MarkDown
 
 - [記法](http://qiita.com/tbpgr/items/989c6badefff69377da7)
@@ -8,15 +11,11 @@
 
 - [ショートカット](http://qiita.com/elly/items/1ae275d1b2432cc98d68)
 
-- [markdownプラグイン](/others/sublime001.html)
-
 ## GitHub
 
 - [プッシュできるまで](/others/github001.html)
 
 - [リポジトリにプッシュ](/others/github002.html)
-
-- [他人のリポジトリにプッシュ](/others/github003.html)
 
 - [Gitコマンドチートシート](/others/github004.html)
 

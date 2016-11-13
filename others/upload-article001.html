@@ -20,52 +20,124 @@
     <div class="container">
       <div id="markup">
         <article id="content" class="markdown-body">
-          <h1>その他</h1>
-<h2>記事の投稿方法</h2>
-<ul>
-<li><a href="/others/upload-article001.html">投稿方法</a></li>
-</ul>
-<h2>MarkDown</h2>
-<ul>
-<li><a href="http://qiita.com/tbpgr/items/989c6badefff69377da7">記法</a></li>
-</ul>
-<h2>Sublime Text</h2>
-<ul>
-<li><a href="http://qiita.com/elly/items/1ae275d1b2432cc98d68">ショートカット</a></li>
-</ul>
-<h2>GitHub</h2>
-<ul>
+          <h2>記事の投稿方法</h2>
+<p>1, <a href="https://unarranged-articles.github.io/github/index.html">GitHub</a>を参照し、Gitが使える環境構築とGitHubアカウントを作成する</p>
+<p>2, <a href="https://github.com/unarranged-articles/unarranged-articles.github.io">記事投稿リポジトリ</a>の管理者に作成したGitHubアカウント名を伝える</p>
+<p>3, リポジトリの編集権限承認メールが来るので承諾する</p>
+<p>4, 任意のフォルダに下記コマンドで記事投稿リポジトリを取得する</p>
+<div class="codehilite"><pre>$ git clone https://GitHubアカウント名@github.com/unarranged-articles/unarranged-articles.github.io.git
+</pre></div>
+
+
+<p>5, 記事は下記手順で作成し記事投稿リポジトリに登録している  </p>
+<ol>
 <li>
-<p><a href="/others/github001.html">プッシュできるまで</a></p>
+<p>Markdown形式でファイルを作成  </p>
 </li>
 <li>
-<p><a href="/others/github002.html">リポジトリにプッシュ</a></p>
+<p>SublimeTextというテキストエディタの"OmniMarkupPreviewer"というパッケージで<br>
+  MarkdownファイルをHTMLファイルに変換</p>
 </li>
 <li>
-<p><a href="/others/github004.html">Gitコマンドチートシート</a></p>
+<p>そのHTMLファイルを記事投稿リポジトリに登録  </p>
 </li>
-</ul>
-<h2>AWS</h2>
-<ul>
-<li>
-<p><a href="/others/aws001.html">EC2インスタンスにTomcat8をインストールしwarファイルをデプロイ</a></p>
-</li>
-<li>
-<p><a href="/others/aws002.html">EC2インスタンスにJenkinsをインストール</a></p>
-</li>
-<li>
-<p><a href="/others/aws003.html">EC2インスタンスにGitBucketを立てる</a></p>
-</li>
-</ul>
-<h2>便利ツール</h2>
+</ol>
+<p>そのため、<a href="http://webkaru.net/dev/windows-sublime-text-3-install/">SublimeText</a>をインストールする  </p>
+<p>また"OmniMarkupPreviewer"をSublimeTextをインストールするためには、<br>
+   パッケージ管理ツール<a href="http://webkaru.net/dev/sublime-text-package-control/">Package Control</a>が必要であるためこちらもインストールする</p>
+<p>6, "<a href="http://webmem.hatenablog.com/entry/sublime-text-markdown">Sublime Text で Markdown を快適にする3つのパッケージ</a>"を参考に下記をインストールする　　</p>
 <ul>
 <li>
-<p><a href="/others/cygwin001.html">Cygwin</a></p>
+<p>OmniMarkupPreviewer - Markdown をプレビュー表示する</p>
+<ul>
+<li>ctrl+alt+o - ブラウザで作成したmarkdownファイルをプレビュー</li>
+<li>ctrl+alt+x - markdownファイルをhtmlファイルとしてエクスポート</li>
+<li>ctrl+alt+c - markdownファイルをhtmlファイルとしてコピー</li>
+</ul>
 </li>
 <li>
-<p><a href="/others/rlogin001.html">RLogin</a></p>
+<p>Monokai Extended - Markdown をシンタックスハイライトする</p>
 </li>
+<li>Markdown Extended - Markdown 内のコードをシンタックスハイライトする</li>
 </ul>
+<p>7, OmniMarkupPreviewerでプレビュー表示またはHTMLファイルに変換する際に使用しているテンプレートファイルを変更する</p>
+<ol>
+<li>
+<p>メニューの[Preferences] -&gt; [Browse Packages]でインストールしたパッケージの設定フォルダを開く</p>
+</li>
+<li>
+<p>OmniMarkupPreviewer/templatesフォルダ内に記事投稿リポジトリ内にある下記ファイルを配置する<br>
+      \unarranged-articles.github.io\omnimarkdown<br>
+                                        - unarranged-articles.tpl<br>
+                                        - unarranged-articles-export.tpl</p>
+</li>
+<li>
+<p>このテンプレートファイルを使用するよう変更する</p>
+<ol>
+<li>
+<p>メニューの[Preferences] -&gt; [Package Settings] -&gt; [OmniMarkupPreviewer] -&gt; [Settings - User]を選択</p>
+</li>
+<li>
+<p>下記を追加  </p>
+</li>
+</ol>
+</li>
+</ol>
+<div class="codehilite"><pre>{
+    &quot;html_template_name&quot;: &quot;unarranged-articles&quot;,
+    &quot;export_options&quot; : {
+        &quot;template_name&quot;: &quot;unarranged-articles-export&quot;,
+        &quot;timestamp_format&quot;: &quot;&quot;
+    }
+}
+</pre></div>
+
+
+<p>8, SublimeTextを再起動</p>
+<p>9, SublimeTextを使用し4で取得したリポジトリ内で記事を作成/変更</p>
+<p>10, 作成した記事をリモートリポジトリにpushすれば記事の投稿は完了</p>
+<h3>記事投稿の推奨手順</h3>
+<p>これはGitのワークフローとしては、masterブランチで何かしらの編集作業をすることはあまり推奨されていないため、<br>
+これにそって下記手順を推奨手順とする  </p>
+<p>【推奨手順】  </p>
+<ol>
+<li>専用のブランチを作成</li>
+<li>そのブランチで記事を変更/修正</li>
+<li>問題がないことが確認できたらローカルのmasterブランチに修正内容をマージ</li>
+<li>リモートブランチにpush</li>
+</ol>
+<p>1, ブランチを作成し作業ブランチを作成したブランチに移動</p>
+<div class="codehilite"><pre>$ git checkout -b [ブランチ名]
+</pre></div>
+
+
+<p>2, SublimeTextでmarkdownで記事を変更または修正(※プレビューはctrl+alt+o)</p>
+<p>3, ctrl+alt+xでmarkdownファイルをhtmlファイルでエクスポート</p>
+<p>4, 作成したmarkdownファイルとhtmlファイルをステージ領域にあげ、コミット</p>
+<div class="codehilite"><pre>$ git add [ファイル名]
+$ git commit -m &quot;コミットコメント&quot;
+</pre></div>
+
+
+<p>5, masterブランチに記事をマージ</p>
+<div class="codehilite"><pre>$ git checkout master
+$ git merge --no-f [ブランチ名]
+</pre></div>
+
+
+<p>6, masterブランチに移動し、マージされていることを確認</p>
+<div class="codehilite"><pre>$ cat [マージしたファイル名]
+</pre></div>
+
+
+<p>7, リモートブランチにプッシュ</p>
+<div class="codehilite"><pre>$ git push origin master
+</pre></div>
+
+
+<p>8, 作成した専用ブランチを削除</p>
+<div class="codehilite"><pre>$ git branch --delete [ブランチ名]
+</pre></div>
         </article>
       </div>
     </div>

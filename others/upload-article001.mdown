@@ -1,0 +1,113 @@
+## 記事の投稿方法
+
+1, [GitHub](https://unarranged-articles.github.io/github/index.html)を参照し、Gitが使える環境構築とGitHubアカウントを作成する
+
+2, [記事投稿リポジトリ](https://github.com/unarranged-articles/unarranged-articles.github.io)の管理者に作成したGitHubアカウント名を伝える
+
+3, リポジトリの編集権限承認メールが来るので承諾する
+
+4, 任意のフォルダに下記コマンドで記事投稿リポジトリを取得する
+```
+$ git clone https://GitHubアカウント名@github.com/unarranged-articles/unarranged-articles.github.io.git
+```
+
+5, 記事は下記手順で作成し記事投稿リポジトリに登録している  
+
+  1. Markdown形式でファイルを作成  
+
+  1. SublimeTextというテキストエディタの"OmniMarkupPreviewer"というパッケージで  
+  MarkdownファイルをHTMLファイルに変換
+
+  1. そのHTMLファイルを記事投稿リポジトリに登録  
+
+   そのため、[SublimeText](http://webkaru.net/dev/windows-sublime-text-3-install/)をインストールする  
+
+   また"OmniMarkupPreviewer"をSublimeTextをインストールするためには、  
+   パッケージ管理ツール[Package Control](http://webkaru.net/dev/sublime-text-package-control/)が必要であるためこちらもインストールする
+
+6, "[Sublime Text で Markdown を快適にする3つのパッケージ](http://webmem.hatenablog.com/entry/sublime-text-markdown)"を参考に下記をインストールする　　
+
+- OmniMarkupPreviewer - Markdown をプレビュー表示する
+	- ctrl+alt+o - ブラウザで作成したmarkdownファイルをプレビュー
+ 	- ctrl+alt+x - markdownファイルをhtmlファイルとしてエクスポート
+ 	- ctrl+alt+c - markdownファイルをhtmlファイルとしてコピー
+
+- Monokai Extended - Markdown をシンタックスハイライトする
+- Markdown Extended - Markdown 内のコードをシンタックスハイライトする
+
+7, OmniMarkupPreviewerでプレビュー表示またはHTMLファイルに変換する際に使用しているテンプレートファイルを変更する
+
+   1. メニューの[Preferences] -> [Browse Packages]でインストールしたパッケージの設定フォルダを開く
+
+   2. OmniMarkupPreviewer/templatesフォルダ内に記事投稿リポジトリ内にある下記ファイルを配置する  
+      \unarranged-articles.github.io\omnimarkdown  
+      									- unarranged-articles.tpl  
+      									- unarranged-articles-export.tpl
+
+   3. このテンプレートファイルを使用するよう変更する
+
+      1. メニューの[Preferences] -> [Package Settings] -> [OmniMarkupPreviewer] -> [Settings - User]を選択
+
+      2. 下記を追加  
+```
+{
+    "html_template_name": "unarranged-articles",
+    "export_options" : {
+        "template_name": "unarranged-articles-export",
+        "timestamp_format": ""
+    }
+}
+```
+
+8, SublimeTextを再起動
+
+9, SublimeTextを使用し4で取得したリポジトリ内で記事を作成/変更
+
+10, 作成した記事をリモートリポジトリにpushすれば記事の投稿は完了
+
+### 記事投稿の推奨手順
+これはGitのワークフローとしては、masterブランチで何かしらの編集作業をすることはあまり推奨されていないため、  
+これにそって下記手順を推奨手順とする  
+
+【推奨手順】  
+
+1. 専用のブランチを作成
+2. そのブランチで記事を変更/修正
+3. 問題がないことが確認できたらローカルのmasterブランチに修正内容をマージ
+4. リモートブランチにpush
+
+1, ブランチを作成し作業ブランチを作成したブランチに移動
+```
+$ git checkout -b [ブランチ名]
+```
+
+2, SublimeTextでmarkdownで記事を変更または修正(※プレビューはctrl+alt+o)
+
+3, ctrl+alt+xでmarkdownファイルをhtmlファイルでエクスポート
+
+4, 作成したmarkdownファイルとhtmlファイルをステージ領域にあげ、コミット
+```
+$ git add [ファイル名]
+$ git commit -m "コミットコメント"
+```
+
+5, masterブランチに記事をマージ
+```
+$ git checkout master
+$ git merge --no-f [ブランチ名]
+```
+
+6, masterブランチに移動し、マージされていることを確認
+```
+$ cat [マージしたファイル名]
+```
+
+7, リモートブランチにプッシュ
+```
+$ git push origin master
+```
+
+8, 作成した専用ブランチを削除
+```
+$ git branch --delete [ブランチ名]
+```
