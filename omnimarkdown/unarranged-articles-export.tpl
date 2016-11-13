@@ -29,7 +29,7 @@
         </article>
       </div>
     </div>
-    <footer class="footer text-muted"></footer>
+<footer class="footer text-muted" style="color:#999;padding-top:30px;padding-bottom:30px;margin-top:30px;font-size:13px;line-height:32px;border-top:1px solid #e5e5e5;"><ul style="float:right"><li style="display:inline-block;margin-right:30px"><a href="https://github.com/unarranged-articles/unarranged-articles.github.io">GitHub</a></li><ul></ul></ul></footer>
   </body>
   %if mathjax_enabled:
   <script type="text/x-mathjax-config">
