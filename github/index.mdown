@@ -5,3 +5,5 @@
 * [GitHubを利用するための準備](/github/github002.html)
 
 * [Gitコマンドでリポジトリを操作](/github/github003.html)
+
+* [Pull Request](/github/github004.html)
