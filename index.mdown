@@ -2,16 +2,14 @@
 
 * [Gradle](/gradle/index.html) 
 
-* [AWS](/aws/index.html)
+* AWS
 
 * [GitHub](/github/index.html)
 
-* [暗号技術入門](/cipher/index.html)
+* 暗号技術入門
 
-* [Junit](/junit/index.html)
+* Elastic Search
 
-* [Apache Solr](/apachesolr/index.html)
-
-* [Elastic Search](/elasticsearch/index.html)
+* Wicket
 
 * [その他](/others/index.html)
