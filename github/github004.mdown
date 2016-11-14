@@ -1,6 +1,6 @@
 # Pull Request
 
-GitHubが有名となった１つにPull Requestという機能があるためです  
+GitHubが有名となった１つにPull Requestという機能があるため  
 この機能によりクラウド上で共有して他者と協力しプログラミングするソーシャルコーディングが主流となり、  
 またこの機能を使って初めて、GitHubを使っていると言える
 
@@ -9,4 +9,118 @@ GitHubが有名となった１つにPull Requestという機能があるため�
 ## Pull Requestとは
 Pull　Requestとは自身が加えた変更を相手のリポジトリに取り込んでもらう時にする行為
 
-## Pull Requestの流れ
+GitHubでPull Requestを送ると、送信先のリポジトリにソースコード付きでIssueが発行され、  
+このIssueに詳細内容を記載する、これがPull Requestとなる  
+※Issueとは、バグや論機などをトラッキングして管理するために発行するものでRedMineでいうチケットと同じ
+
+送信先のリポジトリ管理者は、送られたPullRequestを取り込むか判断し問題がなければ取り込む  
+また何かしたら問題などがあればIssueにコメントを書き送信者とやりとりをする
+
+## Pull Requestを送る
+![github004-01](./images/github004_01.jpeg)
+
+これから上記の流れでPull Requestを送ってみます
+
+1, Pull Requestを送る元となる[GitHubのリポジトリ](https://github.com/anchanTest/try-pull-request)にアクセスする
+
+2, リポジトリをfork
+![github004-04](./images/github004_02.jpeg)
+![github004-04](./images/github004_03.jpeg)
+
+ForkとはGitHub上のリポジトリをGithub上でcloneすること 
+
+3, ローカル環境にforkしたリポジトリをクローン
+```
+$ git clone https://GitHubアカウント名@github.com/unarranged-articles/try-pull-request.git
+Cloning into 'try-pull-request'...
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+Checking connectivity... done.
+$ cd try-pull-request/
+$ ls
+README.md
+```
+
+4, トピックブランチを作成
+```
+$ git checkout -b challenge-pull-req
+Switched to a new branch 'challenge-pull-req'
+$ git branch -a
+* challenge-pull-req
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+```
+
+前にも説明したが、Gitではトピックブランチを利用した開発フローが主流  
+GitHubでは、このトピックブランチをPull Requestする
+
+これによりPull　Requestでのトピックが明確となり、  
+コードの変更に対する意図がレビューアと共有しやすくコードレビューが効果的に出来る
+
+5, 新規ファイルを追加(すでにあるファイルの中身を変更してもよい)
+```
+$ vi index.html
+$ cat index.txt
+challenge pull request
+```
+
+6, 追加したファイルをローカルリポジトリにコミット
+```
+$ git add index.txt
+$ git commit -m "create index.txt"
+[challenge-pull-req d0177e4] create index.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.txt
+```
+
+7, リモートブランチの作成
+```
+$ git push origin challenge-pull-req
+Password for 'https://unarranged-articles@github.com':
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 309 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://unarranged-articles@github.com/unarranged-articles/try-pull-request.git
+ * [new branch]      challenge-pull-req -> challenge-pull-req
+ $ git branch -a
+* challenge-pull-req
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/challenge-pull-req
+  remotes/origin/master
+```
+
+GitHubからPull Requestを送るためには、GitHub側のリポジトリに修正を加えたブランチがある必要がある  
+なので、ローカルリポジトリのchallenge-pull-reqブランチに相当するリモートブランチを作っている
+
+![github004-04](./images/github004_04.jpeg)
+![github004-04](./images/github004_05.jpeg)
+
+8, GitHubで作成したトピックブランチに切り替える
+![github004-04](./images/github004_06.jpeg)
+
+9, Pull Requestを送る
+![github004-04](./images/github004_07.jpeg)
+![github004-04](./images/github004_08.jpeg)
+
+プルリクエストを送るフォーム画面に遷移するのでコメントを追加し"Create pull request"を押下  
+※このコメントはMarkDownで書くこともできる
+
+これでPullRequestを送ったリポジトリでPull RequestとIssueが新たに発行され、  
+送り先リポジトリの管理者に通知がいく
+
+Pull Requestはソースが完成してから送信してもよいが、  
+ソースの修正中などにも送信しても問題がない  
+そういった場合は議論するためのPull Requestを送ればよい  
+そうすれば周りの人からフィードバックを受けることができる
+
+今回はForkしてPull Requestを送ったが、そのリポジトリに対して書き込み権限さえあれば、  
+Forkはせず単純にブランチを作成し、そこからPull　Requestを送ることもできる
+
+## Pull Requestを取り込む
+
+
