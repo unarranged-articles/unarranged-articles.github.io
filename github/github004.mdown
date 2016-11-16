@@ -123,4 +123,137 @@ Forkはせず単純にブランチを作成し、そこからPull　Requestを�
 
 ## Pull Requestを取り込む
 
+送信先のGitHubリポジトリで送られたPull Requestを確認
+![github004-04](./images/github004_09.jpeg)
+
+Pull Requestが送られていることが確認出来た  
+
+"Merge pull request"ボタンをクリックすれば自動的にマージされてリポジトリに取り込まれる
+
+またGitHubでは送られたソース1行1行に対してコメントを書くことが出来る
+![github004-04](./images/github004_10.jpeg)
+
+ただこれだと本当に動作するのか、取り込んだ後じゃないとわからない
+
+ローカルにPull Requestが取り込まれた状態のブランチを作成し、  
+そこで動作確認などをするのが正しいPull Requestの取り込み方となる
+
+1, masterブランチの管理者がPull Requestを受信したリポジトリをローカル環境にcloneする
+```
+$ git clone https://アカウント名@github.com/anchanTest/try-pull-request.git
+Cloning into 'try-pull-request'...
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+Checking connectivity... done.
+```
+
+2, Pull Requestを送ってきた側のリポジトリをリモートリポジトリとして登録
+```
+$ git remote add pullSendRep https://アカウント名@github.com/unarranged-articles/try-pull-request.git 
+```
+
+3, 登録したリモートリポジトリをfetchする
+```
+$ git fetch pullSendRep
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/unarranged-articles/try-pull-request
+ * [new branch]      challenge-pull-req -> pullSendRep/challenge-pull-req
+ * [new branch]      master     -> pullSendRep/master
+```
+
+fetchしただけだとリモートリポジトリの変更を取り込んでいるが、  
+どこのブランチにも反映されていない
+
+なので、Pull Requestを取り込んだブランチを作成する
+
+4,作業ブランチを作成し、取り込んだ差分を作業ブランチにマージする
+```
+$ git checkout -b pullReq_merge
+Switched to a new branch 'pullReq_merge'
+$ ls
+README.md
+$ git merge pullSendRep/challenge-pull-req
+Updating f954609..d0177e4
+Fast-forward
+ index.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.txt
+ $ ls
+index.txt  README.md
+```
+
+`pull`と`fetch`の違いはとりあえず下記でいいかと
+
+ - pull
+
+ 	差分を取り込みマージまでしてくれる
+
+ - fetch
+
+ 	差分を取り込むまで、マージはしない
+
+5, ファイルが取り込まれていることを確認したら、確認ブランチを削除
+```
+$ ls
+index.txt  README.md
+$ git checkout master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+$ git branch -D pullReq_merge
+Deleted branch pullReq_merge (was d0177e4).
+$ git branch
+* master
+```
+
+問題がなかったので、ここでやっとGitHunで"Merge pull request"ボタンをクリックする
+
+せっかくなので、Pull Requestのマージもコマンドでやってみる
+
+1, masterブランチにPull　Requestの情報を取り込む
+```
+$ ls
+README.md
+$ git merge pullSendRep/challenge-pull-req
+Updating f954609..d0177e4
+Fast-forward
+ index.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.txt
+$ ls
+index.txt  README.md
+```
+
+2, 差分を確認し、リモートリポジトリに反映
+```
+$ git diff origin
+diff --git a/index.txt b/index.txt
+new file mode 100644
+index 0000000..b32a1d1
+--- /dev/null
++++ b/index.txt
+@@ -0,0 +1 @@
++challenge pull request
+$ git push origin master
+Password for 'https://unarranged-articles@github.com':
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 309 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://unarranged-articles@github.com/anchanTest/try-pull-request.git
+   f954609..d0177e4  master -> master
+
+```
+
+3, GitHubでちゃんと取り込まれていることを確認
+![github004-04](./images/github004_11.jpeg)
+
+
+ここまでの流れは簡単に表すと下記のような感じ
+![github004-04](./images/github004_12.jpeg)
+
 
