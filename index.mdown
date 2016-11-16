@@ -12,4 +12,6 @@
 
 * Wicket
 
-* [その他](/others/index.html)
+* Fluentlenium
+
+* [Tips](/others/index.html)
