@@ -1,0 +1,88 @@
+## EC2インスタンスにApache Solrをたてる
+
+全文検索エンジンサーバであるApaceh SolrをEC2にたてる
+
+1, EC2インスタンスのセキュリティグループに8983番ポートへのアクセスを許可する
+
+  - タイプ：カスタムTCPルール
+  - プロトコル：TCP
+  - ポート範囲：8983
+  - 送信元：0.0.0.0/0
+
+2, JAVAのバージョンを確認
+```
+$ java -version
+openjdk version "1.8.0_111"
+OpenJDK Runtime Environment (build 1.8.0_111-b15)
+OpenJDK 64-Bit Server VM (build 25.111-b15, mixed mode)
+```
+
+3, Apace　Solrをインストール
+```
+$ wget http://ftp.jaist.ac.jp/pub/apache/lucene/solr/5.5.3/solr-5.5.3.tgz
+$ tar -zxvf solr-5.5.3.tgz
+```
+最新版は[こちら](http://ftp.jaist.ac.jp/pub/apache/lucene/solr/)で確認
+
+4,　起動を確認
+```
+$ sudo service solr status
+```
+
+5, 管理画面を表示
+URL:http://IPアドレス:8983/solr/
+![github003-00](./images/aws004-01.jpeg)
+
+6, コアを作成
+```
+$ sudo su - solr
+$ /opt/solr/bin/solr create_core -c mycore1
+Copying configuration to new core instance directory:
+/var/solr/data/mycore1
+
+Creating new core 'mycore1' using command:
+http://localhost:8983/solr/admin/cores?action=CREATE&name=mycore1&instanceDir=mycore1
+
+{
+  "responseHeader":{
+    "status":0,
+    "QTime":945},
+  "core":"mycore1"}
+
+
+```
+コアはOracleとかでいうスキーマみたいなもので、インデックスデータの管理などをする単位  
+コアの削除は下記
+```
+$ /opt/solr/bin/solr delete -c [コア名]
+```
+
+7, サンプルデータを作成
+```
+$ cd /opt/solr/example/exampledocs/
+$ java -Dc=mycore1 -jar post.jar *.xml
+SimplePostTool version 5.0.0
+Posting files to [base] url http://localhost:8983/solr/mycore1/update using content-type application/xml...
+POSTing file gb18030-example.xml to [base]
+POSTing file hd.xml to [base]
+POSTing file ipod_other.xml to [base]
+POSTing file ipod_video.xml to [base]
+POSTing file manufacturers.xml to [base]
+POSTing file mem.xml to [base]
+POSTing file money.xml to [base]
+POSTing file monitor2.xml to [base]
+POSTing file monitor.xml to [base]
+POSTing file mp500.xml to [base]
+POSTing file sd500.xml to [base]
+POSTing file solr.xml to [base]
+POSTing file utf8-example.xml to [base]
+POSTing file vidcard.xml to [base]
+14 files indexed.
+COMMITting Solr index changes to http://localhost:8983/solr/mycore1/update...
+Time spent: 0:00:00.867
+```
+8, サンプルデータが登録されていることを確認
+![github003-00](./images/aws004-02.jpeg)
+
+9, 検索してみる
+![github003-00](./images/aws004-03.jpeg)
