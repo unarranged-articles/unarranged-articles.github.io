@@ -45,7 +45,7 @@ http://localhost:8983/solr/admin/cores?action=CREATE&name=mycore1&instanceDir=my
 
 {
   "responseHeader":{
-    "status":0,
+    "status":0
     "QTime":945},
   "core":"mycore1"}
 
@@ -86,3 +86,16 @@ Time spent: 0:00:00.867
 
 9, 検索してみる
 ![github003-00](./images/aws004-03.jpeg)
+
+
+#### コマンド
+
+　- 起動コマンド
+
+	あああ
+
+　- 停止コマンド
+	
+　- 再起動コマンド
+
+	あああ

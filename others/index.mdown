@@ -19,6 +19,8 @@
 
 ## AWS
 
+- [EC2インスタンスの初期設定](/others/aws004.html)
+
 - [EC2インスタンスにTomcat8をインストールしwarファイルをデプロイ](/others/aws001.html)
 
 - [EC2インスタンスにJenkinsをたてる](/others/aws002.html)
@@ -26,6 +28,7 @@
 - [EC2インスタンスにGitBucketをたてる](/others/aws003.html)
 
 - [EC2インスタンスにApache Solrをたてる](/others/aws004.html)
+
 
 ## 便利ツール
 
