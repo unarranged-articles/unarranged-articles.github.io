@@ -1,0 +1,390 @@
+[33mcommit 7722b85158509e71f810245dab6b90c7c6ddd3df[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sat Nov 19 02:08:42 2016 +0900
+
+    create apache solr articles
+
+[33mcommit 6e7207209bbc533048d3f9e03f428f7ab8af85ef[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Thu Nov 17 23:06:06 2016 +0900
+
+    add Tips apache solr
+
+[33mcommit 914df5d2e0b4d836c1ab0f6a4bcdef441d8582bb[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Wed Nov 16 23:16:04 2016 +0900
+
+    create github004
+
+[33mcommit 52664f092eb98ebd94614099444bb234e24308c8[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Wed Nov 16 22:03:08 2016 +0900
+
+    rm
+
+[33mcommit 2046c8876221906ada883c975cb1a4efa049ae2b[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Wed Nov 16 22:01:34 2016 +0900
+
+    test
+
+[33mcommit 6cb3620622db7203d9adb12c8120c340d3baf6a4[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Wed Nov 16 21:59:47 2016 +0900
+
+    test
+
+[33mcommit 19c49390ada04d601591aee963146f2434b5d406[m
+Author: = <=>
+Date:   Wed Nov 16 20:58:16 2016 +0900
+
+    add topic
+
+[33mcommit d817319e773d68a0cf3ebde51bafa7e9ab316e17[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Mon Nov 14 22:25:11 2016 +0900
+
+    chg Top Page
+
+[33mcommit 0ade4463a17ea0909d008a5965b58586338b4006[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Mon Nov 14 22:21:16 2016 +0900
+
+    remove d
+
+[33mcommit c113af452c044efc97279569379eddadd47b6797[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Mon Nov 14 22:19:38 2016 +0900
+
+    create github004
+
+[33mcommit d65a8a653b585d7146858a3f7fac6167e7e1a7d4[m
+Merge: eb71d40 5f4c807
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Mon Nov 14 20:14:04 2016 +0900
+
+    Merge branch 'master' of github.com:unarranged-articles/try-git
+
+[33mcommit eb71d4042740b7f3c1247b0feb3841a175df06bf[m
+Merge: 4a47071 ce1f2a6
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 22:13:36 2016 +0900
+
+    Merge branch 'github004'
+
+[33mcommit ce1f2a635dcbb2f218e3deaf362fdb1f257bfff9[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 22:13:09 2016 +0900
+
+    add github/github004
+
+[33mcommit 4a47071798e38936dda3e301287ae0e9beede1b0[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 22:01:12 2016 +0900
+
+    chg
+
+[33mcommit c058d0d9619e2c48ea693907b061836358cc98ed[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 21:58:58 2016 +0900
+
+    chg
+
+[33mcommit 2c0299f7a796955b431ea1b007582481d725c3e2[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 21:46:27 2016 +0900
+
+    chg github/index.html
+
+[33mcommit e888800441b69963d189917c83f47ddbc7942684[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 21:42:31 2016 +0900
+
+    chg github003-08.jpeg
+
+[33mcommit 20fb66b3083473353376af19c1c8f4025a6072a8[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 21:39:14 2016 +0900
+
+    chg github003
+
+[33mcommit 5f4c807b2a8f1dbae5b933745818f02c952a6959[m
+Merge: 32b3155 16cfbb0
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 19:42:06 2016 +0900
+
+    fix conflict
+
+[33mcommit 16cfbb0b8c54ed3aa56632fc7bbc971a5e69e903[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 19:19:50 2016 +0900
+
+    fix B
+
+[33mcommit 32b3155f09e329d696e0660acb5cb5a88fb48a48[m
+Merge: 2e9824a 70cd939
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 19:06:36 2016 +0900
+
+    Merge branch 'feature-A'
+
+[33mcommit 70cd9392835f777711e6d6f5a7c5bc4028b98e46[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 19:05:23 2016 +0900
+
+    add fearure-A
+
+[33mcommit 2e9824afa4ca0db0d2b70557a37473addeeab169[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 18:49:37 2016 +0900
+
+    chg index.txt
+
+[33mcommit a94ace51d09cb8b9ba2cdb275d29e57d755d345e[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 18:48:43 2016 +0900
+
+    add index.txt
+
+[33mcommit 5806e35de0a52a541a081e1d6caf0a0a960cffbf[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 15:58:16 2016 +0900
+
+    chg github004
+
+[33mcommit 0f9d498c3f85c08e556c235f8d1f7c0b98ce9bd5[m
+Merge: feb6f48 a2fa8b1
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 15:54:20 2016 +0900
+
+    Merge branch 'chghtml'
+
+[33mcommit a2fa8b13a54f1c9ac19f5b8698958d9788e6a861[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 15:52:30 2016 +0900
+
+    chg html
+
+[33mcommit feb6f4833f602271d1201551e37a669283227c7e[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 15:49:55 2016 +0900
+
+    chg github004
+
+[33mcommit 8555d744c55f2abeb534cfe75a41404b2a1a5e4f[m
+Merge: 0683cc7 554d9e9
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 15:46:49 2016 +0900
+
+    Merge branch 'github003'
+
+[33mcommit 554d9e90738cb1206eea36b1c6f12f643b553793[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 15:46:21 2016 +0900
+
+    chg
+
+[33mcommit 5b04eb517110fc7b10494de3e708fb0d65683937[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 15:44:24 2016 +0900
+
+    chg
+
+[33mcommit 0683cc73a747c840fe7fa8f2014629c67a42ab69[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 15:20:06 2016 +0900
+
+    test
+
+[33mcommit 1d9032124cd482864210a6948652ec5d2b91eb80[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 15:09:06 2016 +0900
+
+    chg
+
+[33mcommit 7dd0139e11ae65c01f4f92de3619c218ffa534cf[m
+Merge: ba0bde8 0f5344e
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 14:33:55 2016 +0900
+
+    Merge branch 'index-A'
+
+[33mcommit 0f5344e36c3c83e28bbf58fdbf5dea2125698f35[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 14:32:32 2016 +0900
+
+    chg index.mdown
+
+[33mcommit ba0bde8082f1c32e40f3e343665adc044dacf50b[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 13 13:15:22 2016 +0900
+
+    add omnimarkdown setting file
+
+[33mcommit b5a264d2ba3af6bb0216d07a5b4ee0c763406e45[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Thu Nov 10 00:01:11 2016 +0900
+
+    test
+
+[33mcommit b21f918ceebe3bc29d617f106bcbb269f732fe44[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Wed Nov 9 23:59:38 2016 +0900
+
+    test
+
+[33mcommit fa1cc7d3c4439f44ef67a5fd87da17a16448dbaf[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Wed Nov 9 23:56:44 2016 +0900
+
+    test
+
+[33mcommit 3b6dfe9efabb772e8270c230b2fd33f45216ee69[m
+Author: anchan024 <anchan024@gmail.com>
+Date:   Wed Nov 9 23:49:54 2016 +0900
+
+    add github003
+
+[33mcommit 057f3260590b991578a4c79105487ec3acbaf48a[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Wed Nov 9 20:52:01 2016 +0900
+
+    install GitBucket
+
+[33mcommit 4efad9baf642a163f8a7f0c4210a1461ee06e831[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Wed Nov 9 00:17:25 2016 +0900
+
+    inti
+
+[33mcommit eb97b2dfb3079c338b876811ac0e81b31a8dc8bb[m
+Author: JojiYuki <joji.yuki.03@gmail.com>
+Date:   Wed Nov 9 00:08:06 2016 +0900
+
+    add junit
+
+[33mcommit d8542384495ba7e59244bf92b39be4e2631c0e37[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Tue Nov 8 23:42:58 2016 +0900
+
+    inti
+
+[33mcommit 664fbb7d4570c2f9968ca67dcc1e237ec81c8874[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Tue Nov 8 23:40:39 2016 +0900
+
+    change github002-push.jpeg
+
+[33mcommit f27545d810976fe2d006453e7ec4f6e823d581bf[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Tue Nov 8 23:28:40 2016 +0900
+
+    add github-002
+
+[33mcommit 859e0a8b15afac5ca93932e40df1ede0303eabbb[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Mon Nov 7 23:13:53 2016 +0900
+
+    init github 001
+
+[33mcommit 1c5992310fef7e3b9797df7591e2838d0e4d4a3c[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Mon Nov 7 23:11:25 2016 +0900
+
+    init github 001
+
+[33mcommit f752516b3e7b2fd78af9250e8635194d9bb65601[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Mon Nov 7 21:12:49 2016 +0900
+
+    commit GitHub Top
+
+[33mcommit 0b564905723c77443d9f048e2f8f485045a949d3[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 21:40:14 2016 +0900
+
+    inti
+
+[33mcommit a565d8af73c964b68ae1d7ea94ad2f0c1cec82f6[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 21:04:40 2016 +0900
+
+    inti
+
+[33mcommit 9db97f0ed819813f673bac01b136572f8493617a[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 21:01:32 2016 +0900
+
+    inti
+
+[33mcommit 2da6ba505d5403b8a8d1ee0ceb6833d6f308a2f9[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 20:55:12 2016 +0900
+
+    inti
+
+[33mcommit 3dc0e3d63df4463d1cebd779fe0767e887e91c0a[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 20:01:20 2016 +0900
+
+    inti
+
+[33mcommit 5224aaee6a9bf8954e4fbe21aec9d700d5f9fb3d[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 19:54:57 2016 +0900
+
+    init
+
+[33mcommit a0065f9fefd190a43d472e7e21ba578033d71e22[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 16:46:50 2016 +0900
+
+    init
+
+[33mcommit 9c6bebff06045b1ed2390e82cc95aec968b793bb[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 16:39:00 2016 +0900
+
+    init
+
+[33mcommit d8613a9ca08148986a5508246d8ed72cf8396e6e[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 16:38:16 2016 +0900
+
+    init
+
+[33mcommit c7ac5ac36279a9b19c347bf410f0e67259b4381d[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 16:34:25 2016 +0900
+
+    init
+
+[33mcommit 67f28826f72b2a3f64088e1a203a1292bf249d48[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 16:31:46 2016 +0900
+
+    init
+
+[33mcommit 2ebb1e0a894a496703d17e485164c5a879c82930[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 16:27:34 2016 +0900
+
+    init
+
+[33mcommit 8e23895429440f275a4895472fa80907957f748e[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 16:13:04 2016 +0900
+
+    init
+
+[33mcommit eb9576fe7bf4d70b3e00dbc38ddb0ef347572cfb[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 16:09:05 2016 +0900
+
+    init
+
+[33mcommit 1e6d93307b14e7caef21e77e18f0c8cdc941122b[m
+Author: unarranged-articles <startaws@gmail.com>
+Date:   Sun Nov 6 14:58:02 2016 +0900
+
+    inial

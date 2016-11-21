@@ -2,6 +2,7 @@
 
 全文検索エンジンサーバであるApaceh SolrをEC2にたてる
 
+### インストールからデータ登録まで
 1, EC2インスタンスのセキュリティグループに8983番ポートへのアクセスを許可する
 
   - タイプ：カスタムTCPルール
@@ -21,6 +22,7 @@ OpenJDK 64-Bit Server VM (build 25.111-b15, mixed mode)
 ```
 $ wget http://ftp.jaist.ac.jp/pub/apache/lucene/solr/5.5.3/solr-5.5.3.tgz
 $ tar -zxvf solr-5.5.3.tgz
+$ solr-5.5.3/bin/install_solr_service.sh solr-5.5.3.tgz 
 ```
 最新版は[こちら](http://ftp.jaist.ac.jp/pub/apache/lucene/solr/)で確認
 
@@ -28,10 +30,16 @@ $ tar -zxvf solr-5.5.3.tgz
 ```
 $ sudo service solr status
 ```
+起動していない場合は
+```
+$bin/solr start
+```
 
 5, 管理画面を表示
 URL:http://IPアドレス:8983/solr/
 ![github003-00](./images/aws004-01.jpeg)
+
+7, 
 
 6, コアを作成
 ```
@@ -87,15 +95,55 @@ Time spent: 0:00:00.867
 9, 検索してみる
 ![github003-00](./images/aws004-03.jpeg)
 
+### コマンド
 
-#### コマンド
+すべてroot権限で実行
 
-　- 起動コマンド
+ - 停止
 
-	あああ
+ ```
+ $ /root/solr-5.5.3/bin/solr stop
+ ```
 
-　- 停止コマンド
-	
-　- 再起動コマンド
+ または
 
-	あああ
+ ```
+ $ service solr stop
+ ```
+
+  - 起動
+
+ ```
+ $ /root/solr-5.5.3/bin/solr start
+ ```
+
+ または
+
+ ```
+ $ service solr start
+ ```
+
+ - 再起動
+
+ ```
+ $ service solr restart
+ ```
+
+ 
+  - コア作成
+
+ ```
+ $ /opt/solr/bin/solr create_core -c [コア名]
+ ```
+
+  - コア削除
+
+ ```
+ $ /opt/solr/bin/solr delete -c [コア名]
+ ```
+
+  - コアの場所
+
+ ```
+$ /root/solr-5.5.3/server/solr/[コア名]
+ ```
