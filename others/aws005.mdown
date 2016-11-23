@@ -20,6 +20,6 @@ $ sudo yum -y update
 * javaのアップデート
 ```
 $ sudo yum -y install java-1.8.0-openjdk-devel
-$ 
+$ sudo alternatives --config java
 $ java -version
 ```
