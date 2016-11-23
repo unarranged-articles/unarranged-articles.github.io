@@ -18,132 +18,72 @@ OpenJDK Runtime Environment (build 1.8.0_111-b15)
 OpenJDK 64-Bit Server VM (build 25.111-b15, mixed mode)
 ```
 
+もし1.7のままである場合は、1.8にあげる
+```
+$ sudo alternatives --config java
+$ java -version
+```
+
 3, Apace　Solrをインストール
 ```
-$ wget http://ftp.jaist.ac.jp/pub/apache/lucene/solr/5.5.3/solr-5.5.3.tgz
+$ cd /home/ec2-user/temp/
+$ wget http://ftp.tsukuba.wide.ad.jp/software/apache//lucene/solr/5.5.3/solr-5.5.3.tgz
 $ tar -zxvf solr-5.5.3.tgz
-$ solr-5.5.3/bin/install_solr_service.sh solr-5.5.3.tgz 
+$ cd solr-5.5.3
 ```
 最新版は[こちら](http://ftp.jaist.ac.jp/pub/apache/lucene/solr/)で確認
 
-4,　起動を確認
+4,　起動
 ```
-$ sudo service solr status
-```
-起動していない場合は
-```
-$bin/solr start
+$  bin/solr start
+Waiting up to 30 seconds to see Solr running on port 8983 [/]  
+Started Solr server on port 8983 (pid=8306). Happy searching!
 ```
 
-5, 管理画面を表示
-URL:http://IPアドレス:8983/solr/
+5, 管理画面を表示  
+URL : http://IPアドレス:8983/solr/
 ![github003-00](./images/aws004-01.jpeg)
 
-7, 
-
-6, コアを作成
+6, サービスとして登録
 ```
-$ sudo su - solr
-$ /opt/solr/bin/solr create_core -c mycore1
-Copying configuration to new core instance directory:
-/var/solr/data/mycore1
-
-Creating new core 'mycore1' using command:
-http://localhost:8983/solr/admin/cores?action=CREATE&name=mycore1&instanceDir=mycore1
-
-{
-  "responseHeader":{
-    "status":0
-    "QTime":945},
-  "core":"mycore1"}
-
-
-```
-コアはOracleとかでいうスキーマみたいなもので、インデックスデータの管理などをする単位  
-コアの削除は下記
-```
-$ /opt/solr/bin/solr delete -c [コア名]
+$ sudo solr-5.5.3/bin/install_solr_service.sh solr-5.5.3.tgz 
 ```
 
-7, サンプルデータを作成
+7, コアの作成
 ```
-$ cd /opt/solr/example/exampledocs/
-$ java -Dc=mycore1 -jar post.jar *.xml
-SimplePostTool version 5.0.0
-Posting files to [base] url http://localhost:8983/solr/mycore1/update using content-type application/xml...
-POSTing file gb18030-example.xml to [base]
-POSTing file hd.xml to [base]
-POSTing file ipod_other.xml to [base]
-POSTing file ipod_video.xml to [base]
-POSTing file manufacturers.xml to [base]
-POSTing file mem.xml to [base]
-POSTing file money.xml to [base]
-POSTing file monitor2.xml to [base]
-POSTing file monitor.xml to [base]
-POSTing file mp500.xml to [base]
-POSTing file sd500.xml to [base]
-POSTing file solr.xml to [base]
-POSTing file utf8-example.xml to [base]
-POSTing file vidcard.xml to [base]
-14 files indexed.
-COMMITting Solr index changes to http://localhost:8983/solr/mycore1/update...
-Time spent: 0:00:00.867
+$ bin/solr create -c solr_test
 ```
-8, サンプルデータが登録されていることを確認
-![github003-00](./images/aws004-02.jpeg)
 
-9, 検索してみる
-![github003-00](./images/aws004-03.jpeg)
+8, サンプルデータの登録
+```
+$ bin/post -c solr_test example/exampledocs/*.xml
+```
 
-### コマンド
+9, 管理画面でデータが登録されていることを確認
+![github003-00](./images/aws004-04.jpeg)
 
-すべてroot権限で実行
+### schema.xmlを書くために
 
- - 停止
+ 5.X系からスキーマ情報はscheme.xmlに書かなくなった
 
- ```
- $ /root/solr-5.5.3/bin/solr stop
- ```
+ schema.xmlでスキーマ情報を設定する手順は下記になる
 
- または
+ 1, conf/solrconfig.xmlの下記に変更
+```
+  <schemaFactory class="ManagedIndexSchemaFactory">
+    <bool name="mutable">true</bool>
+    <str name="managedSchemaResourceName">managed-schema</str>
+  </schemaFactory>
+```
+をコメントアウトし、
+```
+<schemaFactory class="ClassicIndexSchemaFactory"/>
+```
+を記述
 
- ```
- $ service solr stop
- ```
+ 2, managed-schemaをschema.xmlにリネームする
 
-  - 起動
-
- ```
- $ /root/solr-5.5.3/bin/solr start
- ```
-
- または
-
- ```
- $ service solr start
- ```
-
- - 再起動
-
- ```
- $ service solr restart
- ```
-
- 
-  - コア作成
-
- ```
- $ /opt/solr/bin/solr create_core -c [コア名]
- ```
-
-  - コア削除
-
- ```
- $ /opt/solr/bin/solr delete -c [コア名]
- ```
-
-  - コアの場所
-
- ```
-$ /root/solr-5.5.3/server/solr/[コア名]
- ```
+ 3, コアのリロード
+```
+ $  curl 'http://localhost:8983/solr/admin/cores?action=RELOAD&core=[コア名]'
+```

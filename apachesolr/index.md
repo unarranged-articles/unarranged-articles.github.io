@@ -12,3 +12,4 @@
 
 * [SolrサーバにJavaからアクセスする](/apachesolr005.html)
 
+* [コマンド](/apachesolr_command.html)
