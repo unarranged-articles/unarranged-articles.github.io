@@ -16,7 +16,8 @@ $ sudo yum -y install java-1.8.0-openjdk-devel
 
 4, インストールしたjava8を使用するよう設定変更
 ``` 
-	$ sudo yum -y install java-1.8.0-openjdk-devel
+$ sudo alternative --config java
+$ java -version
 ```
 
 5, tomcat8のインストール

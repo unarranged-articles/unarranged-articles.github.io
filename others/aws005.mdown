@@ -1,0 +1,25 @@
+## EC2　初期設定
+
+* rootパスワードの設定
+```
+$ sudo su -
+$ passwd
+パスワードを設定
+```
+* タイムゾーン変更
+```
+$ sudo cp -p /usr/share/zoneinfo/Japan /etc/localtime
+$ date
+```
+
+* yumのアップデート
+```
+$ sudo yum -y update
+```
+
+* javaのアップデート
+```
+$ sudo yum -y install java-1.8.0-openjdk-devel
+$ 
+$ java -version
+```

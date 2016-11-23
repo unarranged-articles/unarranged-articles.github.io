@@ -14,4 +14,8 @@
 
 * Fluentlenium
 
+* [Apache Solr](/apachesolr/index.html)
+
+* Jetty
+
 * [Tips](/others/index.html)
