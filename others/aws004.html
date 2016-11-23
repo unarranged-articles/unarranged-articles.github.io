@@ -39,14 +39,14 @@ OpenJDK 64-Bit Server VM (build 25.111-b15, mixed mode)
 
 
 <p>もし1.7のままである場合は、1.8にあげる</p>
-<div class="codehilite"><pre>$ sudo alternatives --config java
+<div class="codehilite"><pre>$ sudo yum -y install java-1.8.0-openjdk-devel
+$ sudo alternatives --config java
 $ java -version
 </pre></div>
 
 
 <p>3, Apace　Solrをインストール</p>
-<div class="codehilite"><pre>$ cd /home/ec2-user/temp/
-$ wget http://ftp.tsukuba.wide.ad.jp/software/apache//lucene/solr/5.5.3/solr-5.5.3.tgz
+<div class="codehilite"><pre>$ wget http://ftp.tsukuba.wide.ad.jp/software/apache//lucene/solr/5.5.3/solr-5.5.3.tgz
 $ tar -zxvf solr-5.5.3.tgz
 $ cd solr-5.5.3
 </pre></div>
@@ -97,7 +97,8 @@ URL : http://IPアドレス:8983/solr/
 
 
 <p>を記述</p>
-<p>2, managed-schemaをschema.xmlにリネームする</p>
+<p>2, managed-schemaをコピーしてschema.xmlを作成する
+ <code>$ cp managed-schema schema.xml</code></p>
 <p>3, コアのリロード</p>
 <div class="codehilite"><pre> $  curl &#39;http://localhost:8983/solr/admin/cores?action=RELOAD&amp;core=[コア名]&#39;
 </pre></div>

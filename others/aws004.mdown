@@ -20,13 +20,13 @@ OpenJDK 64-Bit Server VM (build 25.111-b15, mixed mode)
 
 もし1.7のままである場合は、1.8にあげる
 ```
+$ sudo yum -y install java-1.8.0-openjdk-devel
 $ sudo alternatives --config java
 $ java -version
 ```
 
 3, Apace　Solrをインストール
 ```
-$ cd /home/ec2-user/temp/
 $ wget http://ftp.tsukuba.wide.ad.jp/software/apache//lucene/solr/5.5.3/solr-5.5.3.tgz
 $ tar -zxvf solr-5.5.3.tgz
 $ cd solr-5.5.3
@@ -81,7 +81,10 @@ $ bin/post -c solr_test example/exampledocs/*.xml
 ```
 を記述
 
- 2, managed-schemaをschema.xmlにリネームする
+ 2, managed-schemaをコピーしてschema.xmlを作成する
+ ```
+ $ cp managed-schema schema.xml
+ ```
 
  3, コアのリロード
 ```
