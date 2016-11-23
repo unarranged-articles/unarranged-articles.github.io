@@ -27,9 +27,6 @@
 
 - [EC2インスタンスにGitBucketをたてる](/others/aws003.html)
 
-- [EC2インスタンスにApache Solrをたてる](/others/aws004.html)
-
-
 ## 便利ツール
 
 - [Cygwin](/others/cygwin001.html)
