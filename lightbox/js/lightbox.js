@@ -289,6 +289,7 @@
       $image.width(preloader.width);
       $image.height(preloader.height);
 
+/*
       if (self.options.fitImagesInViewport) {
         // Fit image inside the viewport.
         // Take into account the border around the image and an additional 10px gutter on each side.
@@ -322,7 +323,7 @@
           }
         }
       }
-
+*/
       /* origin */
       var imgheight = $image.height();
       var imgWidth = $image.width();
