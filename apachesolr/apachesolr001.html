@@ -4,6 +4,14 @@
     <meta charset="utf-8">
     <title>apachesolr001.md</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        $("div.container img").each(function() {
+          var imgPath = $(this).attr("src");
+          $(this).wrap("<a href='" + imgPath + "' data-lightbox='group'></a>");
+        });
+      });
+    </script>
     <script src="https://unarranged-articles.github.io/lightbox/js/lightbox.js"></script>
     <script>
     lightbox.option({
@@ -13,18 +21,10 @@
       'wrapAround': true,
       'resizeDuration': 200,
       'wrapAround': true,
-      'showImageNumberLabel': false,
       'maxWidth': 600,
-      'maxHeight': 600
+      'maxHeight': 600,
+      'showImageNumberLabel' : true
     })
-    </script>
-    <script type="text/javascript">
-      $(function(){
-        $("img").each(function() {
-          var imgPath = $(this).attr("src");
-          $(this).wrap("<a href='" + imgPath + "' data-lightbox='group'></a>");
-        });
-      });
     </script>
     <link href="https://unarranged-articles.github.io/lightbox/css/lightbox.css" rel="stylesheet">
     <style type="text/css">#markup article{padding-top: 30px; padding-bottom: 200px}</style>

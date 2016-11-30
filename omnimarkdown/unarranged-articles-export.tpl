@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
       $(function(){
-        $("img").each(function() {
+        $("div.container img").each(function() {
           var imgPath = $(this).attr("src");
           $(this).wrap("<a href='" + imgPath + "' data-lightbox='group'></a>");
         });
@@ -26,7 +26,8 @@
       'resizeDuration': 200,
       'wrapAround': true,
       'maxWidth': 600,
-      'maxHeight': 600
+      'maxHeight': 600,
+      'showImageNumberLabel' : true
     })
     </script>
     <link href="https://unarranged-articles.github.io/lightbox/css/lightbox.css" rel="stylesheet">
