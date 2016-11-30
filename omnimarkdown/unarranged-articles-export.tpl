@@ -8,16 +8,6 @@
     <meta charset="utf-8">
     <title>title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://unarranged-articles.github.io/lightbox/js/lightbox.js"></script>
-    <script>
-    lightbox.option({
-      'resizeDuration': 200,
-      'wrapAround': true,
-      'showImageNumberLabel': false,
-      'maxWidth': 600,
-      'maxHeight': 600
-    })
-    </script>
     <script type="text/javascript">
       $(function(){
         $("img").each(function() {
@@ -25,6 +15,19 @@
           $(this).wrap("<a href='" + imgPath + "' data-lightbox='group'></a>");
         });
       });
+    </script>
+    <script src="https://unarranged-articles.github.io/lightbox/js/lightbox.js"></script>
+    <script>
+    lightbox.option({
+      'showImageNumberLabel': true,
+      'alwaysShowNavOnTouchDevices': false,
+      'fadeDuration': 100,
+      'wrapAround': true,
+      'resizeDuration': 200,
+      'wrapAround': true,
+      'maxWidth': 600,
+      'maxHeight': 600
+    })
     </script>
     <link href="https://unarranged-articles.github.io/lightbox/css/lightbox.css" rel="stylesheet">
     <style type="text/css">#markup article{padding-top: 30px; padding-bottom: 200px}
